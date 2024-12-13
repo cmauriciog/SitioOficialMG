@@ -1,1 +1,55 @@
-jslc
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar DIV desde Otra Página</title>
+    <style>
+        #contenido {
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cargar Contenido desde Otra Página</h1>
+    <button onclick="cargarContenido()">Cargar DIV</button>
+    <div id="contenido">El contenido se cargará aquí...</div>
+
+    <script>
+        function cargarContenido() {
+            fetch('mapabase.html') // Cambia 'pagina_externa.html' por la URL de tu página
+                .then(response => response.text())
+                .then(data => {
+                    // Extraer el div específico del contenido cargado
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const divDeseado = doc.querySelector('#marcomapa'); // Cambia #miDiv al ID de tu div
+                    if (divDeseado) {
+                        document.getElementById('contenido').innerHTML = divDeseado.innerHTML;
+                    } else {
+                        document.getElementById('contenido').innerHTML = 'El DIV no fue encontrado.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar el contenido:', error);
+                    document.getElementById('contenido').innerHTML = 'Error al cargar el contenido.';
+                });
+        }
+    </script>
+</body>
+</html>

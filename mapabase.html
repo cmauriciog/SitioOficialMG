@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8" />
+<head>
+	<!--Título de la pestaña del navegador-->
+	<title>Mapa Base</title>
+	<!--Enlaces para tomar herramientas de Leaflet-->
+	<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+<!--Configurar tamaño de la pantalla general y para el contenedor del mapa-->
+<style>
+	html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	}
+	.marcomapa {
+		height: 90%;
+		width: 90%;
+    }
+</style>
+</head>
+<body>
+	<!--Contenedor del mapa-->
+	<div class="marcomapa" id="marcomapa"></div>
+	<script>
+		<!--Configuración de la variable mapa-->
+		var mapa = L.map('marcomapa').setView([-33.00287458056903, -68.86695852768983], 18);
+		<!--Establecer el mapa base de fondo-->
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(mapa);
+		<!--Añadir escala-->
+		L.control.scale({position:'bottomright'}).addTo(mapa);
+	</script>
+</body> 
+</html>
