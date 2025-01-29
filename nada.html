@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar coincidencias</title>
+</head>
+<body>
+  <input type="text" id="searchInput" placeholder="Escribe para buscar...">
+  <p>Este es un párrafo de texto de prueba.</p>
+  <div>Este es otro div con más contenido.</div>
+  <p>Coincidencia en este párrafo</p>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+      let searchTerm = this.value.toLowerCase();  // Obtener el texto de búsqueda
+      let bodyElements = document.body.querySelectorAll('*');  // Obtener todos los elementos del cuerpo
+      let searchResults = [];
+
+      bodyElements.forEach(function(element) {
+        // Excluir el input con id="searchInput"
+        if (element.id !== 'searchInput' && element.textContent.toLowerCase().includes(searchTerm)) {
+          searchResults.push(element);
+        }
+      });
+
+      // Mostrar los resultados en la consola
+      console.log('Resultados de la búsqueda:');
+      searchResults.forEach(function(result) {
+        console.log(result);
+      });
+    });
+  </script>
+</body>
+</html>
