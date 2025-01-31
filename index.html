@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Oficial Mauricio Godoy</title>
+	<!--Enlace para estilo del carrusel-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<!--Enlace y script para usar las animaciones-->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -24,13 +27,16 @@
 			background-color: var(--background-light);
 			color: var(--text-light);
         }
+		/*Carrusel*/
+		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; top: 80px}
+        .swiper-slide { text-align: center; position: relative; }
+        .swiper-slide img { width: 100%; border-radius: 10px; height: 100%;}
+        .texto { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px; }
 		/*Contenedor Encabezado*/
         .contenedorencabezado {
 			position: fixed;
 			width: 100%;
 			height: 100px;
-			/*gap: 3%;*/
-			/*background-color: green;*/
 			z-index: 2;
         }
         .tabla-encabezado {
@@ -38,28 +44,98 @@
 			grid-template-columns: 5% 87% 8%;/*0.5fr 2fr 1fr;*/ /* Tres columnas */
 			grid-template-rows: 50% 50%; /* Dos filas de 10% de alto */
 			height: 100%; /* Altura total del grid */
-			/*gap: 10px;*/
         }
         .imagen-encabezado {
 			grid-row: 1 / 3; /* Ocupa ambas filas */
-			/*background-color: #ADD8E6;*/ /* Celeste claro */
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			max-width: 100px;
 			max-height: 100px;
+			overflow: hidden;
         }
         .imagen-encabezado img {
 			max-width: 100%;
 			height: auto;
 			object-fit: contain;
         }
+		/*Animación de recuadro en foto de perfil*/
+		.imagen-encabezado span:nth-child(1) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: linear-gradient(to right, transparent, #2b8cbe);
+			animation: animate_one 2s linear infinite;
+		}
+		@keyframes animate_one {
+			0% {
+				transform: translateX(-100%);
+			}
+			100% {
+				transform: translateX(100%);
+			}
+		}
+		.imagen-encabezado span:nth-child(2) {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 3px;
+			height: 50%;
+			background: linear-gradient(to bottom, transparent, #2b8cbe);
+			animation: animate_two 2s linear infinite;
+			--animation-delay: 1s;
+		}
+		@keyframes animate_two {
+			0% {
+				transform: translateY(-100%);
+			}
+			100% {
+				transform: translateY(100%);
+			}
+		}
+		.imagen-encabezado span:nth-child(3) {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: linear-gradient(to right, transparent, #2b8cbe);
+			animation: animate_three 2s linear infinite;
+			animation-delay: 1s;
+		}
+		@keyframes animate_three {
+			0% {
+				transform: translateX(100%);
+			}
+			100% {
+				transform: translateX(-100%);
+			}
+		}
+		.imagen-encabezado span:nth-child(4) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3px;
+			height: 50%;
+			background: linear-gradient(to right, transparent, #2b8cbe);
+			animation: animate_four 2s linear infinite;
+			--animation-delay: 1s;
+		}
+		@keyframes animate_four {
+			0% {
+				transform: translateY(100%);
+			}
+			100% {
+				transform: translateY(-100%);
+			}
+		}
         .titulo {
 			grid-row: 1;
 			background-color: lightgray;
 			display: flex;
 			justify-content: center;
-			/*justify-content: top;*/
 			align-items: center;
 			height: 100%;
 			color: red;
@@ -69,24 +145,18 @@
 		/*Menú*/
         .menu-nav {
 			grid-row: 2;
-			/*background-color: red;*/
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			background-color: cyan;
 			text-decoration: none; 
-			/*transition: background-color 0.3s ease;*/
         }
         .menu {
 			list-style: none;
-			/*padding: 0;
-			margin: 0;*/
 			display: none;
 			flex-direction: column;
 			position: absolute;
-			/*top: 100px;
-			right: 20px;*/
 			width: 200px;
 			border-radius: 8px;
 			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -95,30 +165,21 @@
 			text-align: center;
 			text-decoration: none; 
 			padding: 10px;
+			color: blue;
 			border-bottom: 1px solid #444;
 		}
-		/*.menu li:last-child {
-			border-bottom: none;
-		}*/
 		.menu li:hover {
 			background: #05bff2;
 		}
-		/*.menu ul {
-			/*list-style: none;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			justify-content: space-around; Distribuye horizontalmente */
-			align-items: center; /* Centra verticalmente */
-		}*/
 		.menu a {
 			text-decoration: none;
 			color: blue;
 			font-size: 18px;
 		}
 		.menu a:hover {
-			color: #ffa500;
-			background-color: black;
+			color: #05bff2;
+			background-color: blue;
+			cursor: pointer;
 		}
 		.menu-toggle {
 			font-size: 24px;
@@ -150,13 +211,6 @@
 			}
 		}
 		/*Modo de pantalla*/
-        /*.fondo {
-			grid-row: 2;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: botom;
-        }*/
         .fondo_button {
 			font-size: 24px;
 			color: white;
@@ -267,7 +321,6 @@
 			background-color: #007BFF;
 			color: white;
 			border: none;
-			/*border-radius: 50%;*/
 			width: 150px;
 			height: 50px;
 			font-size: 20px;
@@ -302,7 +355,6 @@
 		/* Modal */
 		.modal {
 			display: none; /* Oculto por defecto */
-			/*position: relative;*/
 			position: fixed;
 			top: calc(15vw);
 			left: calc(25vw);
@@ -312,7 +364,7 @@
 			justify-content: center;
 			align-items: center;
 			z-index: 3;
-			/*position: relative;*/
+			overflow: auto;
 		}
 		/* Contenedor del Modal */
 		.modal-contenido {
@@ -322,13 +374,13 @@
 			position: absolute;
 			width: 90%;
 			height: 80%;
+			overflow: auto;
 		}
 		/* Imagen del Modal*/
 		.modal img {
 			width: 30%;
 			height: auto;
 			top: 0px;
-			/*justify-content: center;*/
 			align-items: center;
 			border-radius: 10px;
 			left: calc(35%);
@@ -340,7 +392,6 @@
 			font-size: 20px;
 			margin: 0;
 			position: absolute;
-			/*left: calc(5%);*/
 			top: 110px;
 		}
 		/* Botón para cerrar del Modal*/
@@ -348,7 +399,6 @@
 			background-color: #87CEEB;
 			color: #000;
 			border: none;
-			/*padding: 10px 20px;*/
 			font-size: 16px;
 			cursor: pointer;
 			border-radius: 5px;
@@ -363,15 +413,12 @@
 		.contenedorgrande {
 			width: 100%;
 			height: 200vh;
-			/*margin-right: 50px;
-			top: 150px;*/
 			padding: 110px 0px 0px 0px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: center;
 			z-index: 1;
-			/*position: absolute;*/
         }
         .fila {
 			width: 100%;
@@ -384,8 +431,8 @@
 			position: relative;
 			width: 100%;
 			height: 100%;
-			background-color: black;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -406,15 +453,15 @@
 			background-color: white;
 			border: true;
 			border: 2px solid red;
+			overflow: auto;
 		}
         /*Botón para abrir mapa en pestaña nueva a pantalla completa*/
-		.caja button {/*oton-pagina {*/
+		.caja button {
 			position: absolute;
 			bottom: 20px;
 			right: 30px;
 			height: 30px;
 			weight: 70px;
-			/*padding: 5px 10px;*/
 			background-color: blue;
 			color: white;
 			border: true;
@@ -423,37 +470,22 @@
 			font-size: 14px;
 			z-index: 2;
         }
-        .caja button:hover {/*oton-pagina:hover {*/
+        .caja button:hover {
 			background-color: green;/*#0056b3;*/
         }
         /*Contenedor Chico*/
 		.contenedorchico {
-			/*width: 100%;
-			height: 100vh;
-			--margin-left: 100px;
-			--margin-top: 110px;
-			--padding: 10px 100px 50px 100px;
-			align-items: center;*/
 			display: flex;
 			justify-content: space-between;
 			width: 100%;
 			height: calc(100vh - 150px);
 			box-sizing: border-box;
-			/*max-width: 1200px;
-			padding: 10px;*/
 		}
         .contenedorchico img {
-			/*width: 80%;
-			height: auto;
-			--justify-content: center;
-			align-items: center;
-			border-radius: 10px;
-			--position: absolute;
-			background-color: black;*/
 			width: calc(80% - 2%); /* Ancho ajustado para incluir separación */
 			height: auto;
 			object-fit: contain; /* Ajusta la imagen sin deformarla */
-			background-color: grey;
+			background-color: white;
 			text-align: center;
 			padding: 20px;
 			border-radius: 10px;
@@ -461,28 +493,21 @@
 			border: 2px solid red;
 		}
 		.contenedorchico p{
-			/*width: 15%;
-			height: calc(100%-150px);
-			background-color: blue;
-			color: cyan;*/
 			width: calc(25% - 2%); /* Ancho ajustado para incluir separación */
-			background-color: blue;
-			color: cyan;
+			background-color: white;
+			color: black;
 			text-align: justify;/*center;*/
 			padding: 20px;
 			border-radius: 10px;
 			border: true;
 			border: 2px solid red;
+			overflow: auto;
 		}
 		/*Separador entre secciones*/
         .separador{
 			width: 100%;
 			height: 50px;
-			/*padding: 10px;*/
-			/*gap: 30%;*//*separador entre elementos*/
-			/*margin-left: 100px;*/
-			/*top: 110px;*/
-			background-color: pink;
+			background-color: gray;
         }
 		/*Barra Lateral*/
 		.barralateral {
@@ -581,17 +606,6 @@
         .boton-con-icono:hover {
             background-color: #0056b3;
         }
-		/*footer {
-			background-color: #333;
-			color: white;
-			/*text-align: center;*/
-			padding: 10px 0;
-			position: fixed;
-			bottom: 0;
-			width: 100%;
-			height: 50px;
-			z-index: 1;
-		}*/
 		/*Modo Deshabilitado Elementos*/
 		.disabled {
 			pointer-events: none; /* Evita que se pueda interactuar */
@@ -623,35 +637,6 @@
         .search-button:hover {
 			background-color: #0056b3;
         }
-        /*#search-input {
-			flex: 1;
-			border: 1px solid #ccc;
-			outline: none;
-			padding: 5px;
-			font-size: 16px;
-			margin-left: 10px;
-			border-radius: 5px;
-			width: 0;
-			opacity: 0;
-			transition: width 0.3s ease, opacity 0.3s ease;
-        }
-        #search-input.active {
-			width: 200px;
-			opacity: 1;
-        }
-        ul#results {
-			list-style: none;
-			padding: 0;
-			margin-top: 20px;
-			width: 300px;
-        }
-        ul#results li {
-			padding: 10px;
-			border: 1px solid #ccc;
-			margin-bottom: 5px;
-			border-radius: 5px;
-			background-color: #f9f9f9;
-        }*/
 		.letranegrita {
 			font-weight: bold;
 		}
@@ -663,6 +648,10 @@
     <div class="contenedorencabezado" id="contenedorencabezado">
 		<div class="tabla-encabezado">
 			<div class="imagen-encabezado">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
 				<img src="Perfil.jpg" alt="Imagen de ejemplo">
 			</div>
 			<div class="titulo">Título de la Página...</div>
@@ -670,25 +659,55 @@
 				<div id="barra_menu" class="menu">
 					<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 					<ul class="menu" id="menu">
-						<li><a href="#Mapas">Mapas</a></li>
-						<li><a href="#Python">Python</a></li>
-						<li><a href="#Excel">Excel</a></li>
-						<li><a href="#Encuestas">Encuestas</a></li>
-						<li><a href="#Contacto">Contacto</a></li>
+						<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
+						<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
+						<li><a onclick="navigateTo(event, 'Excel')">Excel</a></li>
+						<li><a onclick="navigateTo(event, 'Encuestas')">Encuestas</a></li>
+						<li><a onclick="navigateTo(event, 'Contacto')">Contacto</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="busqueda">
-				<button class="search-button" id="botonbusqueda">
+				<button class="search-button" id="botonbusqueda" disabled>
 					<i class="fas fa-search"></i>
 				</button>
 			</div>
 			<div id="campo_busqueda">
 				<input type="text" id="searchInput" placeholder="Escribe para buscar..." autocomplete="off">
 			</div>
-			<!--<ul id="results"></ul>-->
 		</div>
     </div>
+	
+	<!--Sección para el carrusel-->
+	<div id="intro" height="50%" width="100%">
+		<div class="swiper mySwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="Mapas.jpg" alt="Imagen 1" onclick="navigateTo(event, 'Mapas')">
+					<div class="texto">Un mapa es una representación gráfica a escala real de lo que hay sobre la superficie terrestre. Con la ayuda de herramientas de cartografía de uso libre y gratuito, es posible crear editar y hasta publicar en internet mapas de distintas temáticas.</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="Python.jpg" alt="Imagen 2" onclick="navigateTo(event, 'Python')">
+					<div class="texto">Descripción para Python</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="Excel.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Excel')">
+					<div class="texto">Descripción para Excel</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="Encuesta.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Encuestas')">
+					<div class="texto">Descripción para Encuestas</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="Contacto.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Contacto')">
+					<div class="texto">Descripción Contactos</div>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+	</div>
 	
 	<!--Botón flotante volver al Inicio-->
 	<button id="botonFlotante" class="botonvolverinicio" title="Subir al Inicio">↑</button>
@@ -727,67 +746,67 @@
 	<!--Modal en caso de estar usando dispositivo movil-->
 	<div id="myModal" class="modal">
 		<div class="modal-contenido">
-			<img src="dispositivomovil.jpg">
+			<img src="Dispositivomovil.jpg">
 			<p>Parece que estás conectado con celular...!!!</p>
 			<button class="modal-boton-cerrar" id="closeModal" onclick="CerrarModal()">Cerrar</button>
 		</div>
 	</div>
 	
 	<!--Sección de mapas-->
-	<section id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
-		<!--Un mapa es una representación gráfica a escala realidad que hay sobre la superficie terrestre con la ayuda de herramientas de cartografía te uso libre gratuito Cuqui y otras informáticas es posible crear editar y hasta publicar en internet mapas de distintas temáticas-->
+	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
         <div class="fila">
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamza/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
-				<p>Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.</p>
+				<p>Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
             </div>
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
-				<p>Mapa en desarrollo.</p>
+				<p>Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
             </div>
         </div>
         <div class="fila">
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
-				<p>Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.</p>
+				<p>Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
             </div>
             <div class="caja">
-				<object type="text/html" data="https://cmauriciog.github.io/SitioOficialMG/"></object>
-                <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/SitioOficialMG/')">Ampliar</button>
+				<object><img src="Endesarrollo.jpg" width="100%" height="auto" /></object>
+                <!--<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
+				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar></button>-->
 				<p>Mapa en desarrollo.</p>
             </div>
         </div>
-    </section>
+    </div>
 
 	<div class="separador"></div>
 
 	<!--Sección de Python-->
-	<section id="Python" class="contenedorchico" data-aos="zoom-in-down">
+	<div id="Python" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Python.jpg" />
 		<p><span class="letranegrita">Python</span><br><br>
 		Python es un lenguaje qué código abierto y gratuito muy versátil para aplicar en distintas disciplinas.<br><br>Estas y otras características lo han convertido lenguaje de amplio uso.<br><br>
 		Además, cuenta con una nutrida comunidad de programadores que están enriqueciendo en forma constante y sin pausa sus complementos o herramientas aplicables a distintas necesidades del usuario.<br><br>
 		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar y solicitar distintas consultas a una base de datos.</p>
-	</section>
+	</div>
 	
 	<div class="separador"></div>
 
 	<!--Sección de Excel-->
-	<section id="Excel" class="contenedorchico" data-aos="zoom-in-down">
+	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
 		<p><span class="letranegrita">Visual Basic Aplicado a Excel</span><br><br>
 		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
 		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
 		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
-	</section>
+	</div>
 
 	<div class="separador"></div>
 
 	<!--Sección de Encuestas-->
-	<section id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
+	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
 		<p><span class="letranegrita">Encuestas Digitales</span><br><br>
 		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
@@ -795,17 +814,17 @@
 		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
 		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los analisis correspondientes.<br><br>
 		En esta imagen se puede observar una interfaz de la aplicacion movil y el registro resultante.</p>
-	</section>
+	</div>
 	
 	<div class="separador"></div>
 
 	<!--Sección de Contacto-->
-	<section id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
-		<img src="Delfin.jpg" />
+	<div id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
+		<img src="Contacto.jpg" />
 		<p><span class="letranegrita">Contacto</span><br><br>
 		A continuacion encontraras los medios para contactarme...<br><br>
 		Mi mail:</p>
-	</section>
+	</div>
 	</div>
 
 	<!--Pie de página-->
@@ -816,7 +835,6 @@
 		</div>
 		<div class="columna-derecha">
 			<button class="boton-con-icono" id="colorModo">
-				<!--<i class="fas fa-thumbs-up" id="labelModo" title="Cambiar a fondo oscuro"></i>Fondo Negro-->
 				<i id="iconoModo" class="fas fa-moon" title="Cambiar a fondo oscuro"></i>
 				<span id="labelModo" style="font-size:12px" title="Cambiar a fondo oscuro">Fondo Negro</span>
 			</button>
@@ -825,12 +843,17 @@
 <script>
 	<!--Variables globales-->
 	var cuerpo = document.body;
+	var contenedor_separador=document.querySelectorAll(".separador");
+	var contenedor_grande=document.querySelectorAll(".contenedorgrande");
+	var contenedor_caja=document.querySelectorAll(".caja");
+	var contenedor_chico=document.querySelectorAll(".contenedorchico");
 	var boton_modo = document.getElementById("colorModo");
 	var icono_modo = document.getElementById("iconoModo");
 	var label_modo = document.getElementById("labelModo");
 	var boton_busqueda=document.getElementById("botonbusqueda");
 	const campito_busqueda=document.getElementById("campo_busqueda");
 	const texto_busqueda=document.getElementById("searchInput");
+	var currentIndex = 0;
 	
 	//var searchInput = document.getElementById("search-input");
 	var prevButton = document.getElementById("prev");
@@ -838,7 +861,7 @@
 	const status = document.getElementById("status");
 	var contenido = document.getElementById("contenidogeneral");
 	var matches = [];
-	var currentIndex = -1;
+	//var currentIndex = -1;
 
 	<!--Bloque para realizar las búsquedas-->
 	searchInput.addEventListener("input", () => {
@@ -972,21 +995,47 @@
 	// Lista de fondos y nombres de íconos (utilizando FontAwesome como referencia)
 
 	//Clic en botón Modo
-	boton_modo.addEventListener("click", toggleBackground);
+	boton_modo.addEventListener("click", cambiarColor);
 
-	function toggleBackground() {
+	function cambiarColor() {
 		const backgrounds = [
-		{color: "white", icon: "fas fa-moon", label: "Fondo Negro", titulo: "Fondo color oscuro"},
-		{color: "black", icon: "fas fa-droplet", label: "Fondo Azul", titulo: "Fondo color azul"},
-		{color: "blue", icon: "fas fa-sun", label: "Fondo Blanco", titulo: "Fondo color blanco"},
+		{fondo: "white", letra: "black", sep:"gray", icon: "fas fa-moon", label: "Fondo Negro", titulo: "Fondo color oscuro"},
+		{fondo: "black", letra: "white", sep:"#fec44f", icon: "fas fa-droplet", label: "Fondo Azul", titulo: "Fondo color azul"},
+		{fondo: "blue", letra: "cyan", sep:"#2b8cbe", icon: "fas fa-sun", label: "Fondo Blanco", titulo: "Fondo color blanco"},
 		];
-		let currentIndex = 0;
-		console.log(currentIndex);
+		//let currentIndex = 0;
+		//console.log(currentIndex);
 		currentIndex = (currentIndex + 1) % backgrounds.length;
-		const {color, icon: iconClass, label: textLabel, titulo: title} = backgrounds[currentIndex];
-		// Cambiar el color de fondo
-		cuerpo.style.backgroundColor = color;
-		// Actualizar ícono y texto
+		const {fondo, letra, sep, icon: iconClass, label: textLabel, titulo: title} = backgrounds[currentIndex];
+		// Cambiar el color del fondo y de la letra de cada contenedor
+		
+		// Recorrer cada elemento y cambiar sus estilos
+		contenedor_grande.forEach(div => {
+			div.style.color = letra;  // Cambia el color del texto
+			div.style.backgroundColor = fondo;  // Cambia el color de fondo
+			// Seleccionar y cambiar estilos de los párrafos dentro del div
+            div.querySelectorAll("p").forEach(p => {
+                p.style.color = letra;
+				p.style.backgroundColor=fondo;
+            });
+		});
+		contenedor_caja.forEach(div => {
+			div.style.backgroundColor = fondo;
+		});
+		contenedor_chico.forEach(div => {
+			div.style.color = letra;
+			div.style.backgroundColor = fondo;
+            div.querySelectorAll("p").forEach(p => {
+                p.style.color = letra;
+				p.style.backgroundColor=fondo;
+            });
+            div.querySelectorAll("img").forEach(img => {
+                img.style.backgroundColor = fondo;
+            });
+		});
+		contenedor_separador.forEach(div => {
+			div.style.backgroundColor = sep;
+		});
 		icono_modo.className = iconClass;
 		label_modo.textContent = textLabel;
 		icono_modo.title=title;
@@ -1048,8 +1097,33 @@
       }
     });
 	
+	<!--Función para ir a la sección-->
+	function navigateTo(event, sectionId) {
+		event.preventDefault();
+		const section = document.getElementById(sectionId);
+		if	(section) {
+			window.scrollTo({
+				top: section.offsetTop - 100, // Ajusta el espacio superior
+				behavior: "smooth"
+			});
+		};
+	};
+	
+	<!--Bloque para el carrusel-->
+	var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        autoplay: { delay: 5000 }
+    });
+	
 	<!--Iniciar la función para animar las imágenes-->
 	AOS.init({duration: 1000});
+	
+	<!--Ir al tope superior cada vez que se ingrese-->
+	window.onload = function() {
+        window.scrollTo(0, 0);
+    };
 </script>
 </body>
 </html>
