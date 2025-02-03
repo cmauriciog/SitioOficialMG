@@ -27,6 +27,15 @@
 			background-color: var(--background-light);
 			color: var(--text-light);
         }
+		/*Formateo del input*/
+		input {
+            background-color: red;
+            color: green;
+			font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid black;
+        }
 		/*Carrusel*/
 		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; top: 80px}
         .swiper-slide { text-align: center; position: relative; }
@@ -42,7 +51,7 @@
         .tabla-encabezado {
 			display: grid;
 			grid-template-columns: 5% 87% 8%;/*0.5fr 2fr 1fr;*/ /* Tres columnas */
-			grid-template-rows: 50% 50%; /* Dos filas de 10% de alto */
+			grid-template-rows: 50% 50%; /* Dos filas de 50% de alto cada una*/
 			height: 100%; /* Altura total del grid */
         }
         .imagen-encabezado {
@@ -59,17 +68,17 @@
 			height: auto;
 			object-fit: contain;
         }
-		/*Animación de recuadro en foto de perfil*/
+		/*Animación de recuadro en encabezado*/
 		.imagen-encabezado span:nth-child(1) {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 3px;
+			height: 5px;
 			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animate_one 2s linear infinite;
+			animation: animacion_uno 1s linear infinite;
 		}
-		@keyframes animate_one {
+		@keyframes animacion_uno {
 			0% {
 				transform: translateX(-100%);
 			}
@@ -81,13 +90,13 @@
 			position: absolute;
 			top: 0;
 			right: 0;
-			width: 3px;
+			width: 5px;
 			height: 50%;
 			background: linear-gradient(to bottom, transparent, #2b8cbe);
-			animation: animate_two 2s linear infinite;
-			--animation-delay: 1s;
+			animation: animacion_dos 0.5s linear infinite;
+			animation-delay: 1.5s;
 		}
-		@keyframes animate_two {
+		@keyframes animacion_dos {
 			0% {
 				transform: translateY(-100%);
 			}
@@ -100,12 +109,12 @@
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			height: 3px;
+			height: 5px;
 			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animate_three 2s linear infinite;
-			animation-delay: 1s;
+			animation: animacion_tres 1s linear infinite;
+			animation-delay: 0.5s;
 		}
-		@keyframes animate_three {
+		@keyframes animacion_tres {
 			0% {
 				transform: translateX(100%);
 			}
@@ -117,13 +126,13 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: 3px;
+			width: 5px;
 			height: 50%;
 			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animate_four 2s linear infinite;
-			--animation-delay: 1s;
+			animation: animacion_cuatro 1s linear infinite;
+			animation-delay: 1.5s;
 		}
-		@keyframes animate_four {
+		@keyframes animacion_cuatro {
 			0% {
 				transform: translateY(100%);
 			}
@@ -132,19 +141,47 @@
 			}
 		}
         .titulo {
-			grid-row: 1;
+			grid-row: 1/2;
 			background-color: lightgray;
 			display: flex;
+			--max-width: 200%;
+			max-height: 70px;
 			justify-content: center;
 			align-items: center;
-			height: 100%;
+			height: 50%;
 			color: red;
 			font-weight: bold;
 			font-size: 16px;
+			transform: traslate(-50%, -50%);
+			border-bottom: .3vw solid #fff;
+			--overflow: hidden;
+			animation: animacion_titulo 2s linear forwards;
         }
+		@keyframes animacion_titulo {
+			0% {
+				width: 0;
+				height: 0;
+			}
+			30% {
+				width: 50%;
+				height: 0;
+			}
+			60% {
+				width: 59vw;
+				height: 12vw;
+			}
+			80% {
+				width: 59vw;
+				height: 12vw;
+			}
+			100% {
+				width: 59vw;
+				height: 12vw;
+			}
+		}		
 		/*Menú*/
         .menu-nav {
-			grid-row: 2;
+			grid-row: 2 / 3;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -641,6 +678,8 @@
 			font-weight: bold;
 		}
     </style>
+	<!--Icono para la pestaña del navegador-->
+	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
 </head>
 <body>
 	<!--Contenedor general para realizar las búsquedas de coincidencias-->
@@ -668,7 +707,7 @@
 				</div>
 			</div>
 			<div class="busqueda">
-				<button class="search-button" id="botonbusqueda" disabled>
+				<button class="search-button" id="botonbusqueda">
 					<i class="fas fa-search"></i>
 				</button>
 			</div>
@@ -758,25 +797,25 @@
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamza/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
-				<p>Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
+				<p class="busca">Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
             </div>
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
-				<p>Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
+				<p class="busca">Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
             </div>
         </div>
         <div class="fila">
             <div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
-				<p>Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
+				<p class="busca">Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
             </div>
             <div class="caja">
 				<object><img src="Endesarrollo.jpg" width="100%" height="auto" /></object>
                 <!--<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
 				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar></button>-->
-				<p>Mapa en desarrollo.</p>
+				<p class="busca">Mapa en desarrollo.</p>
             </div>
         </div>
     </div>
@@ -786,7 +825,7 @@
 	<!--Sección de Python-->
 	<div id="Python" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Python.jpg" />
-		<p><span class="letranegrita">Python</span><br><br>
+		<p><span class="letranegrita busca">Python</span><br><br>
 		Python es un lenguaje qué código abierto y gratuito muy versátil para aplicar en distintas disciplinas.<br><br>Estas y otras características lo han convertido lenguaje de amplio uso.<br><br>
 		Además, cuenta con una nutrida comunidad de programadores que están enriqueciendo en forma constante y sin pausa sus complementos o herramientas aplicables a distintas necesidades del usuario.<br><br>
 		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar y solicitar distintas consultas a una base de datos.</p>
@@ -797,7 +836,7 @@
 	<!--Sección de Excel-->
 	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
-		<p><span class="letranegrita">Visual Basic Aplicado a Excel</span><br><br>
+		<p><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
 		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
 		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
 		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
@@ -808,7 +847,7 @@
 	<!--Sección de Encuestas-->
 	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
-		<p><span class="letranegrita">Encuestas Digitales</span><br><br>
+		<p><span class="letranegrita busca">Encuestas Digitales</span><br><br>
 		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
 		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
 		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
@@ -821,7 +860,7 @@
 	<!--Sección de Contacto-->
 	<div id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Contacto.jpg" />
-		<p><span class="letranegrita">Contacto</span><br><br>
+		<p><span class="letranegrita busca">Contacto</span><br><br>
 		A continuacion encontraras los medios para contactarme...<br><br>
 		Mi mail:</p>
 	</div>
@@ -851,78 +890,16 @@
 	var icono_modo = document.getElementById("iconoModo");
 	var label_modo = document.getElementById("labelModo");
 	var boton_busqueda=document.getElementById("botonbusqueda");
-	const campito_busqueda=document.getElementById("campo_busqueda");
+	const campo_busqueda=document.getElementById("campo_busqueda");
 	const texto_busqueda=document.getElementById("searchInput");
-	var currentIndex = 0;
-	
-	//var searchInput = document.getElementById("search-input");
-	var prevButton = document.getElementById("prev");
-	var nextButton = document.getElementById("next");
-	const status = document.getElementById("status");
+	var indicecolor = 0;
+	//var searchInput = document.getElementById("searchInput");
+	var prevCoincidencia = document.getElementById("prev");
+	var proxCoincidencia = document.getElementById("next");
+	const cantidadCoincidencias = document.getElementById("status");
 	var contenido = document.getElementById("contenidogeneral");
 	var matches = [];
 	//var currentIndex = -1;
-
-	<!--Bloque para realizar las búsquedas-->
-	searchInput.addEventListener("input", () => {
-	const query = searchInput.value.toLowerCase();
-	resetHighlights();
-	matches = [];
-	if (query) {
-		const elements = [...contenido.querySelectorAll("*:not(.menu-nav):not(.menu-nav *)")];
-		elements.forEach((el) => {
-			if (el.nodeType === Node.ELEMENT_NODE && el.textContent.toLowerCase().includes(query)) {
-				const regex = new RegExp(`(${query})`, "gi");
-				el.innerHTML = el.textContent.replace(regex, (match) => `<span class="highlight">${match}</span>`);
-				matches.push(...el.querySelectorAll(".highlight"));
-			}
-		});
-	}
-	updateControls();
-	goToMatch(0);
-	});
-	prevButton.addEventListener("click", () => {
-		goToMatch(currentIndex - 1);
-	});
-	nextButton.addEventListener("click", () => {
-		goToMatch(currentIndex + 1);
-	});
-	function resetHighlights() {
-		const highlights = contenido.querySelectorAll(".highlight, .active-highlight");
-		highlights.forEach((span) => {
-			const parent = span.parentNode;
-			parent.replaceChild(document.createTextNode(span.textContent), span);
-			parent.normalize();
-		});
-	};
-	function updateControls() {
-		prevButton.disabled = matches.length === 0 || currentIndex <= 0;
-		nextButton.disabled = matches.length === 0 || currentIndex >= matches.length - 1;
-		status.textContent = matches.length > 0 ? `${currentIndex + 1}/${matches.length}` : "0/0";
-		if (matches.length === 0) {
-			prevButton.style.display = "none";
-			nextButton.style.display = "none";
-			status.style.display = "none";
-		} else {
-			prevButton.style.display = "block";
-			nextButton.style.display = "block";
-			status.style.display = "block";
-		};
-	};
-	function goToMatch(index) {
-		if (matches.length > 0) {
-			currentIndex = (index + matches.length) % matches.length; // Circular navegación
-			matches.forEach((match, i) => {
-				if (i === currentIndex) {
-					match.scrollIntoView({ behavior: "smooth", block: "center" });
-					match.classList.add("active-highlight");
-				} else {
-					match.classList.remove("active-highlight");
-				}
-			});
-			updateControls();
-		};
-	};
 	
 	// Funcionalidad para abrir y cerrar el modal
 	function CerrarModal() {
@@ -1003,12 +980,13 @@
 		{fondo: "black", letra: "white", sep:"#fec44f", icon: "fas fa-droplet", label: "Fondo Azul", titulo: "Fondo color azul"},
 		{fondo: "blue", letra: "cyan", sep:"#2b8cbe", icon: "fas fa-sun", label: "Fondo Blanco", titulo: "Fondo color blanco"},
 		];
-		//let currentIndex = 0;
-		//console.log(currentIndex);
-		currentIndex = (currentIndex + 1) % backgrounds.length;
-		const {fondo, letra, sep, icon: iconClass, label: textLabel, titulo: title} = backgrounds[currentIndex];
+		indicecolor = indicecolor + 1;
+		if (indicecolor >2) {
+			indicecolor= 0;
+		};
+		let colores=indicecolor % backgrounds.length;
+		const {fondo, letra, sep, icon: iconClass, label: textLabel, titulo: title} = backgrounds[colores];
 		// Cambiar el color del fondo y de la letra de cada contenedor
-		
 		// Recorrer cada elemento y cambiar sus estilos
 		contenedor_grande.forEach(div => {
 			div.style.color = letra;  // Cambia el color del texto
@@ -1042,58 +1020,15 @@
 		label_modo.title=title;
 	};
 	
-	
-	//Búsqueda
-	//const searchInput = document.getElementById('searchInput');
-
-	//searchInput.addEventListener('input', function () {
-	//	const searchTerm = this.value.trim().toLowerCase();
-
-		// Función para recorrer y resaltar el texto
-	//	function highlightMatches(element) {
-	//		if (element.nodeType === 3) { // Nodo de texto
-	//			const text = element.textContent;
-	//			const parent = element.parentNode;
-	//			const matchIndex = text.toLowerCase().indexOf(searchTerm);
-
-	//		if (matchIndex !== -1 && searchTerm !== '') {
-	//			const highlightedText = document.createElement('span');
-	//			highlightedText.className = 'highlight';
-	//			highlightedText.textContent = text.substr(matchIndex, searchTerm.length);
-	//			const beforeMatch = document.createTextNode(text.substr(0, matchIndex));
-	//			const afterMatch = document.createTextNode(text.substr(matchIndex + searchTerm.length));
-	//			parent.replaceChild(afterMatch, element);
-	//			parent.insertBefore(highlightedText, afterMatch);
-	//			parent.insertBefore(beforeMatch, highlightedText);
-	//		}
-	//		} else if (element.nodeType === 1 && element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE') {
-				// Recorrer los hijos del elemento
-	//			Array.from(element.childNodes).forEach(highlightMatches);
-	//		}
-	//	}
-
-		// Restaurar contenido eliminando resaltados anteriores
-	//	document.querySelectorAll('.highlight').forEach(span => {
-	//	const parent = span.parentNode;
-	//	parent.replaceChild(document.createTextNode(span.textContent), span);
-	//	parent.normalize(); // Combina nodos de texto adyacentes
-	//	});
-
-		// Resaltar coincidencias en todo el documento
-	//	if (searchTerm) {
-	//		Array.from(document.body.childNodes).forEach(highlightMatches);
-	//	}
-	//});
-	
 	<!--Activar/Desactivar Búsqueda-->
 	boton_busqueda.addEventListener('click', () => {
-      campito_busqueda.style.display = 'block';
+      campo_busqueda.style.display = 'block';
       texto_busqueda.focus();
     });
 	
 	texto_busqueda.addEventListener('input', () => {
       if (texto_busqueda.value.trim() === '') {
-        campito_busqueda.style.display = 'none';
+        campo_busqueda.style.display = 'none';
       }
     });
 	
@@ -1117,7 +1052,97 @@
         autoplay: { delay: 5000 }
     });
 	
-	<!--Iniciar la función para animar las imágenes-->
+	<!--Bloque para las búsquedas-->
+	//const searchInput = document.getElementById('searchInput');
+	//const prevBtn = document.getElementById('prevBtn');
+	//const nextBtn = document.getElementById('nextBtn');
+	//const matchCounter = document.getElementById('matchCounter');
+
+	let highlightedElements = [];
+	let currentIndex = -1;
+
+	function highlightText() {
+		texto_a_buscar = texto_busqueda.value.trim().toLowerCase();
+		highlightedElements = [];
+		currentIndex = -1;
+
+	// Restaurar contenido original eliminando los resaltados anteriores
+		document.querySelectorAll('.highlight').forEach(span => {
+		const parent = span.parentNode;
+		parent.replaceChild(document.createTextNode(span.textContent), span);
+		parent.normalize();
+	});
+
+	if (texto_a_buscar === '') {
+		updateMatchCounter();
+		return;
+	}
+
+	// Buscar coincidencias solo en elementos con la clase "busca"
+	const elements = document.querySelectorAll('.busca');
+	console.log(elements);
+
+	elements.forEach(element => {
+		element.childNodes.forEach(node => {
+		if (node.nodeType === 3) { // Solo texto
+			const text = node.textContent;
+			const lowerText = text.toLowerCase();
+			let startIndex = 0;
+			let matchIndex;
+			while ((matchIndex = lowerText.indexOf(texto_a_buscar, startIndex)) !== -1) {
+			startIndex = matchIndex + texto_a_buscar.length;
+			const highlightedText = document.createElement('span');
+			highlightedText.className = 'highlight';
+			highlightedText.textContent = text.substr(matchIndex, texto_a_buscar.length);
+			const beforeMatch = document.createTextNode(text.substr(0, matchIndex));
+			const afterMatch = document.createTextNode(text.substr(startIndex));
+			const parent = node.parentNode;
+			parent.replaceChild(afterMatch, node);
+			parent.insertBefore(highlightedText, afterMatch);
+			parent.insertBefore(beforeMatch, highlightedText);
+			highlightedElements.push(highlightedText);
+			}
+		};
+	});
+	});
+
+	updateMatchCounter();
+	if (highlightedElements.length > 0) {
+		currentIndex = 0;
+		updateActiveHighlight();
+		}
+	};
+
+	function updateMatchCounter() {
+		matchCounter.textContent = `${highlightedElements.length > 0 ? currentIndex + 1 : 0}/${highlightedElements.length}`;
+	};
+
+	function updateActiveHighlight() {
+		highlightedElements.forEach(el => el.classList.remove('active-highlight'));
+		if (highlightedElements.length > 0 && currentIndex >= 0) {
+		const activeElement = highlightedElements[currentIndex];
+		activeElement.classList.add('active-highlight');
+		activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+		updateMatchCounter();
+	};
+
+	function navigate(direction) {
+		if (highlightedElements.length === 0) return;
+		if (direction === 'next') {
+			currentIndex = (currentIndex + 1) % highlightedElements.length;
+			} else {
+			currentIndex = (currentIndex - 1 + highlightedElements.length) % highlightedElements.length;
+			};
+		updateActiveHighlight();
+	};
+
+	// Eventos
+	searchInput.addEventListener('input', highlightText);
+	//nextBtn.addEventListener('click', () => navigate('next'));
+	//prevBtn.addEventListener('click', () => navigate('prev'));
+	
+	<!--Iniciar la función para animar las entradas en escenas de las imágenes de las secciones-->
 	AOS.init({duration: 1000});
 	
 	<!--Ir al tope superior cada vez que se ingrese-->
