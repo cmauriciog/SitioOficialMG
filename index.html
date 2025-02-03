@@ -306,7 +306,7 @@
 		.botonadelante {
 			position: fixed;
 			right: 20px;
-			top: 200px;
+			top: 300px;
 			background-color: #007BFF;
 			color: white;
 			border: none;
@@ -319,10 +319,11 @@
 			display: none; /* Ocultamos el botón inicialmente */
 			align-items: center;
 			justify-content: center;
+			z-index: 3;
 		}
-		.botonadelante::before {
+		/*.botonadelante::before {
 			content: "→"
-		}
+		}*/
 		.botonadelante:hover {
 			background-color: green;
 		}
@@ -330,7 +331,7 @@
 		.botonatras {
 			position: fixed;
 			right: 120px;
-			top: 200px;
+			top: 300px;
 			background-color: #007BFF;
 			color: white;
 			border: none;
@@ -343,10 +344,11 @@
 			display: none; /* Ocultamos el botón inicialmente */
 			align-items: center;
 			justify-content: center;
+			z-index: 3;
 		}
-		.botonatras::before {
+		/*.botonatras::before {
 			content: "←";
-		}
+		}*/
 		.botonatras:hover {
 			background-color: green;
 		}
@@ -354,7 +356,7 @@
 		.botontotal {
 			position: fixed;
 			right: 20px;
-			top: 270px;
+			top: 370px;
 			background-color: #007BFF;
 			color: white;
 			border: none;
@@ -366,6 +368,7 @@
 			display: none;  Ocultamos el botón inicialmente
 			align-items: center;
 			justify-content: center;
+			z-index: 3;
 		}
 		.botontotal:hover {
 			background-color: green;
@@ -799,7 +802,7 @@
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
 				<p class="busca">Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
             </div>
-            <div class="caja">
+            <div class="caja busca">
 				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
                 <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
 				<p class="busca">Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
@@ -825,7 +828,7 @@
 	<!--Sección de Python-->
 	<div id="Python" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Python.jpg" />
-		<p><span class="letranegrita busca">Python</span><br><br>
+		<p class="busca"><span class="letranegrita busca">Python</span><br><br>
 		Python es un lenguaje qué código abierto y gratuito muy versátil para aplicar en distintas disciplinas.<br><br>Estas y otras características lo han convertido lenguaje de amplio uso.<br><br>
 		Además, cuenta con una nutrida comunidad de programadores que están enriqueciendo en forma constante y sin pausa sus complementos o herramientas aplicables a distintas necesidades del usuario.<br><br>
 		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar y solicitar distintas consultas a una base de datos.</p>
@@ -836,7 +839,7 @@
 	<!--Sección de Excel-->
 	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
-		<p><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
+		<p class="busca"><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
 		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
 		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
 		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
@@ -847,7 +850,7 @@
 	<!--Sección de Encuestas-->
 	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
-		<p><span class="letranegrita busca">Encuestas Digitales</span><br><br>
+		<p class="busca"><span class="letranegrita busca">Encuestas Digitales</span><br><br>
 		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
 		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
 		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
@@ -860,8 +863,12 @@
 	<!--Sección de Contacto-->
 	<div id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Contacto.jpg" />
-		<p><span class="letranegrita busca">Contacto</span><br><br>
+		<p class="busca"><span class="letranegrita busca">Contacto</span><br><br>
 		A continuacion encontraras los medios para contactarme...<br><br>
+		<!--Sección para descargas-->
+		<a href="Descargar.pdf" download="archivo_descargado.pdf">
+			<button onclick="descargarArchivo()">Descargar Archivo</button>
+		</a><br><br>
 		Mi mail:</p>
 	</div>
 	</div>
@@ -1029,7 +1036,10 @@
 	texto_busqueda.addEventListener('input', () => {
       if (texto_busqueda.value.trim() === '') {
         campo_busqueda.style.display = 'none';
-      }
+      } else {
+		cantidadCoincidencias.style.display = 'block';
+		proxCoincidencia.style.display = 'block';
+	  }
     });
 	
 	<!--Función para ir a la sección-->
@@ -1074,6 +1084,9 @@
 	});
 
 	if (texto_a_buscar === '') {
+		cantidadCoincidencias.style.display = 'none';
+		proxCoincidencia.style.display = 'none';
+		prevCoincidencia.style.display = 'none';
 		updateMatchCounter();
 		return;
 	}
@@ -1114,7 +1127,7 @@
 	};
 
 	function updateMatchCounter() {
-		matchCounter.textContent = `${highlightedElements.length > 0 ? currentIndex + 1 : 0}/${highlightedElements.length}`;
+		cantidadCoincidencias.textContent = `${highlightedElements.length > 0 ? currentIndex + 1 : 0}/${highlightedElements.length}`;
 	};
 
 	function updateActiveHighlight() {
@@ -1130,6 +1143,7 @@
 	function navigate(direction) {
 		if (highlightedElements.length === 0) return;
 		if (direction === 'next') {
+			prevCoincidencia.style.display='block';
 			currentIndex = (currentIndex + 1) % highlightedElements.length;
 			} else {
 			currentIndex = (currentIndex - 1 + highlightedElements.length) % highlightedElements.length;
@@ -1139,8 +1153,18 @@
 
 	// Eventos
 	searchInput.addEventListener('input', highlightText);
-	//nextBtn.addEventListener('click', () => navigate('next'));
-	//prevBtn.addEventListener('click', () => navigate('prev'));
+	proxCoincidencia.addEventListener('click', () => navigate('next'));
+	prevCoincidencia.addEventListener('click', () => navigate('prev'));
+	
+	<!--Descargar archivo-->
+	function descargarArchivo() {
+		var enlace = document.createElement("a");
+		enlace.href = "Aportes al futuro del INTA -  26-11-24.pdf";  // URL del archivo
+		enlace.download = "archivo.pdf";  // Nombre sugerido para la descarga
+		document.body.appendChild(enlace);
+		enlace.click();
+		document.body.removeChild(enlace);
+	};
 	
 	<!--Iniciar la función para animar las entradas en escenas de las imágenes de las secciones-->
 	AOS.init({duration: 1000});
