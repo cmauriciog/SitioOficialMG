@@ -203,9 +203,9 @@
 			-webkit-text-stroke: 0vw #383d52;
 			border-right: 2px solid #01fe87;
 			overflow: hidden;
-			animation: animacion_titulo_2 6s linear infinite;
+			animation: animacion_titulo 6s forwards infinite, animacion_titulo_1 3s 6s forwards infinite;
 		}
-		@keyframes animacion_titulo_2 {
+		@keyframes animacion_titulo {
 			0%,10%,100% {
 				width: 0;
 			}
@@ -213,7 +213,11 @@
 				width: 100%;
 			}
 		}
-		@keyframes animacion_titulo {
+		@keyframes animacion_titulo_1 {
+			from { transform: scale(1); opacity: 0;}
+			to { transform: scale(1.5); opacity: 1;}
+		}
+		/*@keyframes animacion_titulo_2 {
 			0% {
 				width: 0;
 				height: 0;
@@ -234,7 +238,7 @@
 				width: 59vw;
 				height: 12vw;
 			}
-		}
+		}*/
 		/*Menú*/
         .menu-nav {
 			grid-row: 2 / 3;
