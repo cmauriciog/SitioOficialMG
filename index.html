@@ -28,14 +28,42 @@
 			color: var(--text-light);
         }
 		/*Formateo del input*/
-		input {
-            background-color: red;
-            color: green;
+		.campo_busqueda {
+			position: relative;
+		}
+		.campo_busqueda input {
+			width: 250px;
+			padding: 10px;
+			font-size: 16px;
+			border: 4px solid transparent;
+			border-radius: 5px;
+			outline: none;
+			transition: all 0.3s ease-in-out;
+		}
+		.campo_busqueda input:focus {
+			border-color: #ff9800;
+			box-shadow: 0 0 10px #ff9800;
+			transform: scale(1.05);
+			background-color: #eed519;
+			color: #ee6d19;
 			font-weight: bold;
-            font-size: 16px;
-            padding: 10px;
-            border: 2px solid black;
-        }
+		}
+		.campo_busqueda label {
+			position: absolute;
+			top: 50%;
+			left: 10px;
+			transform: translateY(-50%);
+			font-size: 16px;
+			color: #aaa;
+			transition: all 0.3s ease-in-out;
+			pointer-events: none;
+		}
+		.campo_busqueda input:focus + label,
+		.campo_busqueda input:not(:placeholder-shown) + label {
+			top: 5px;
+			font-size: 12px;
+			color: #ff9800;
+		}
 		/*Carrusel*/
 		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; top: 80px}
         .swiper-slide { text-align: center; position: relative; }
@@ -142,21 +170,49 @@
 		}
         .titulo {
 			grid-row: 1/2;
-			background-color: lightgray;
+			background-color: #0302ab;
+			text-align: center;
 			display: flex;
-			--max-width: 200%;
-			max-height: 70px;
 			justify-content: center;
 			align-items: center;
-			height: 50%;
-			color: red;
+			height: 100%;
+			color: #19ddee;
+			font-family: Stencil, Broadway, Impact, Arial, sans-serif;
 			font-weight: bold;
-			font-size: 16px;
+			font-size: 18px;
 			transform: traslate(-50%, -50%);
 			border-bottom: .3vw solid #fff;
+			-webkit-text-stroke: 0.3vw #383d52;
+			--max-width: 200%;
+			--max-height: 70px;
+			--animation: animacion_titulo 2s forwards
+			--animacion_titulo_2 2s 3s forwards;
 			--overflow: hidden;
-			animation: animacion_titulo 2s linear forwards;
-        }
+			--text-decoration: underline 5px solid blue;
+			--animation: rebote 2s infinite ease-in-out;
+		}
+		.titulo::before {
+			content: attr(data-text);
+			--position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			color: #01fe87;
+			background-color: blue;
+			-webkit-text-stroke: 0vw #383d52;
+			border-right: 2px solid #01fe87;
+			overflow: hidden;
+			animation: animacion_titulo_2 6s linear infinite;
+		}
+		@keyframes animacion_titulo_2 {
+			0%,10%,100% {
+				width: 0;
+			}
+			70%,90% {
+				width: 100%;
+			}
+		}
 		@keyframes animacion_titulo {
 			0% {
 				width: 0;
@@ -178,7 +234,7 @@
 				width: 59vw;
 				height: 12vw;
 			}
-		}		
+		}
 		/*Menú*/
         .menu-nav {
 			grid-row: 2 / 3;
@@ -680,6 +736,66 @@
 		.letranegrita {
 			font-weight: bold;
 		}
+		/*Botón de descarga*/
+		.btncolores {
+			margin: 100px;
+			padding: 15px 40px;
+			border: none;
+			outline: none;
+			color: #FFF;
+			cursor: pointer;
+			position: relative;
+			z-index: 0;
+			border-radius: 12px;
+		}
+		.btncolores::after {
+			content: "";
+			z-index: -1;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: blue;
+			left: 0;
+			top: 0;
+			border-radius: 10px;
+		}
+		/* glow */
+		.btncolores::before {
+			content: "";
+			background: linear-gradient(
+			45deg,
+			#FF0000, #FF7300, #FFFB00, #48FF00,
+			#00FFD5, #002BFF, #FF00C8, #FF0000
+			);
+			position: absolute;
+			top: -12px;
+			left: -12px;
+			background-size: 600%;
+			z-index: -1;
+			width: calc(100% + 24px);
+			height:  calc(100% + 24px);
+			filter: blur(8px);
+			animation: glowing 20s linear infinite;
+			transition: opacity .3s ease-in-out;
+			border-radius: 10px;
+			opacity: 0;
+		}
+		@keyframes glowing {
+			0% {background-position: 0 0;}
+			50% {background-position: 400% 0;}
+			100% {background-position: 0 0;}
+		}
+		/* hover */
+		.btncolores:hover::before {
+			opacity: 1;
+		}
+		.btncolores:active:after {
+			background: transparent;
+		}
+		.btncolores:active {
+			color: #000;
+			font-weight: bold;
+		}
     </style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
@@ -696,7 +812,7 @@
 				<span></span>
 				<img src="Perfil.jpg" alt="Imagen de ejemplo">
 			</div>
-			<div class="titulo">Título de la Página...</div>
+			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
 			<div class="menu-nav">
 				<div id="barra_menu" class="menu">
 					<button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -714,8 +830,9 @@
 					<i class="fas fa-search"></i>
 				</button>
 			</div>
-			<div id="campo_busqueda">
-				<input type="text" id="searchInput" placeholder="Escribe para buscar..." autocomplete="off">
+			<div id="campo_busqueda" class="campo_busqueda">
+				<input type="text" id="searchInput" placeholder="" autocomplete="off">
+				<label for="input">Escribe aquí...</label>
 			</div>
 		</div>
     </div>
@@ -840,7 +957,7 @@
 	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
 		<p class="busca"><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
-		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
+		Mapas- Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
 		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
 		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
 	</div>
@@ -851,7 +968,7 @@
 	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
 		<p class="busca"><span class="letranegrita busca">Encuestas Digitales</span><br><br>
-		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
+		Mapita. Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
 		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
 		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
 		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los analisis correspondientes.<br><br>
@@ -866,10 +983,11 @@
 		<p class="busca"><span class="letranegrita busca">Contacto</span><br><br>
 		A continuacion encontraras los medios para contactarme...<br><br>
 		<!--Sección para descargas-->
-		<a href="Descargar.pdf" download="archivo_descargado.pdf">
-			<button onclick="descargarArchivo()">Descargar Archivo</button>
-		</a><br><br>
-		Mi mail:</p>
+		<button class="btncolores" onclick="descargarArchivo()">Descargar Archivo</button>
+		<br>
+		Mi mail:
+		<br>
+		<button class="btncolores" onclick="enviarMail()">Enviarme un mail</button></p>
 	</div>
 	</div>
 
@@ -1061,13 +1179,8 @@
         navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
         autoplay: { delay: 5000 }
     });
-	
-	<!--Bloque para las búsquedas-->
-	//const searchInput = document.getElementById('searchInput');
-	//const prevBtn = document.getElementById('prevBtn');
-	//const nextBtn = document.getElementById('nextBtn');
-	//const matchCounter = document.getElementById('matchCounter');
 
+	<!--Bloque para las búsquedas-->
 	let highlightedElements = [];
 	let currentIndex = -1;
 
@@ -1093,8 +1206,6 @@
 
 	// Buscar coincidencias solo en elementos con la clase "busca"
 	const elements = document.querySelectorAll('.busca');
-	console.log(elements);
-
 	elements.forEach(element => {
 		element.childNodes.forEach(node => {
 		if (node.nodeType === 3) { // Solo texto
@@ -1158,13 +1269,13 @@
 	
 	<!--Descargar archivo-->
 	function descargarArchivo() {
-		var enlace = document.createElement("a");
-		enlace.href = "Aportes al futuro del INTA -  26-11-24.pdf";  // URL del archivo
-		enlace.download = "archivo.pdf";  // Nombre sugerido para la descarga
-		document.body.appendChild(enlace);
-		enlace.click();
-		document.body.removeChild(enlace);
+		window.open('descargar.pdf', '_blank');
 	};
+	
+	<!--Función Enviar Mail-->
+	function enviarMail() {
+		window.location.href = "mailto:cmauriciogodoy@gmail.com?subject=HOLA...!!!&body=Este es un simple mensaje de prueba generado automáticamente por una función de Javascript.-";
+	}
 	
 	<!--Iniciar la función para animar las entradas en escenas de las imágenes de las secciones-->
 	AOS.init({duration: 1000});
