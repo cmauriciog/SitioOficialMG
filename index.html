@@ -947,8 +947,6 @@
             </div>
             <div class="caja">
 				<object><img src="Endesarrollo.jpg" width="100%" height="auto" /></object>
-                <!--<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
-				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar></button>-->
 				<p class="busca">Mapa en desarrollo.</p>
             </div>
         </div>
@@ -1167,12 +1165,13 @@
 	
 	texto_busqueda.addEventListener('input', () => {
       if (texto_busqueda.value.trim() === '') {
-        campo_busqueda.style.display = 'none';
-      } else {
+        //campo_busqueda.style.display = 'none';
+     } else {
 		cantidadCoincidencias.style.display = 'block';
 		proxCoincidencia.style.display = 'block';
 	  }
     });
+
 	
 	<!--Función para ir a la sección-->
 	function navigateTo(event, sectionId) {
@@ -1221,27 +1220,70 @@
 	// Buscar coincidencias solo en elementos con la clase "busca"
 	const elements = document.querySelectorAll('.busca');
 	elements.forEach(element => {
-		element.childNodes.forEach(node => {
-		if (node.nodeType === 3) { // Solo texto
-			const text = node.textContent;
-			const lowerText = text.toLowerCase();
-			let startIndex = 0;
-			let matchIndex;
-			while ((matchIndex = lowerText.indexOf(texto_a_buscar, startIndex)) !== -1) {
-			startIndex = matchIndex + texto_a_buscar.length;
-			const highlightedText = document.createElement('span');
-			highlightedText.className = 'highlight';
-			highlightedText.textContent = text.substr(matchIndex, texto_a_buscar.length);
-			const beforeMatch = document.createTextNode(text.substr(0, matchIndex));
-			const afterMatch = document.createTextNode(text.substr(startIndex));
-			const parent = node.parentNode;
-			parent.replaceChild(afterMatch, node);
-			parent.insertBefore(highlightedText, afterMatch);
-			parent.insertBefore(beforeMatch, highlightedText);
-			highlightedElements.push(highlightedText);
-			}
-		};
-	});
+	//	element.childNodes.forEach(node => {
+	//	if (node.nodeType === 3) { // Solo texto
+	//		const text = node.textContent;
+	//		const lowerText = text.toLowerCase();
+	//		let startIndex = 0;
+	//		let matchIndex;
+	//		while ((matchIndex = lowerText.indexOf(texto_a_buscar, startIndex)) !== -1) {
+	//		startIndex = matchIndex + texto_a_buscar.length;
+	//		const highlightedText = document.createElement('span');
+	//		highlightedText.className = 'highlight';
+	//		highlightedText.textContent = text.substr(matchIndex, texto_a_buscar.length);
+	//		const beforeMatch = document.createTextNode(text.substr(0, matchIndex));
+	//		const afterMatch = document.createTextNode(text.substr(startIndex));
+	//		const parent = node.parentNode;
+	//		parent.replaceChild(afterMatch, node);
+	//		parent.insertBefore(highlightedText, afterMatch);
+	//		parent.insertBefore(beforeMatch, highlightedText);
+	//		highlightedElements.push(highlightedText);
+	//		}
+	//	};
+	//});
+	
+	element.childNodes.forEach(node => {
+
+    if (node.nodeType !== 3) return;
+
+    const texto = node.textContent;
+
+    const regex = new RegExp("(" + texto_a_buscar.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+
+    if (!regex.test(texto))
+        return;
+
+    regex.lastIndex = 0;
+
+    const fragment = document.createDocumentFragment();
+
+    let ultimoIndice = 0;
+
+    texto.replace(regex, (match, p1, offset) => {
+
+        fragment.appendChild(
+            document.createTextNode(texto.substring(ultimoIndice, offset))
+        );
+
+        const span = document.createElement("span");
+        span.className = "highlight";
+        span.textContent = match;
+
+        highlightedElements.push(span);
+
+        fragment.appendChild(span);
+
+        ultimoIndice = offset + match.length;
+    });
+
+    fragment.appendChild(
+        document.createTextNode(texto.substring(ultimoIndice))
+    );
+
+    node.parentNode.replaceChild(fragment, node);
+
+});
+	
 	});
 
 	updateMatchCounter();
@@ -1277,7 +1319,7 @@
 	};
 
 	// Eventos
-	searchInput.addEventListener('input', highlightText);
+	texto_busqueda.addEventListener('input', highlightText);
 	proxCoincidencia.addEventListener('click', () => navigate('next'));
 	prevCoincidencia.addEventListener('click', () => navigate('prev'));
 	
