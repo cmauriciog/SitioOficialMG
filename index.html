@@ -970,7 +970,7 @@
 	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
 		<p class="busca"><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
-		Mapas- Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
+		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
 		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
 		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
 	</div>
@@ -981,7 +981,7 @@
 	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
 		<p class="busca"><span class="letranegrita busca">Encuestas Digitales</span><br><br>
-		Mapita. Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
+		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
 		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
 		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
 		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los analisis correspondientes.<br><br>
@@ -1326,7 +1326,12 @@
 	
 	<!--Descargar archivo-->
 	function descargarArchivo() {
-		window.open('descargar.pdf', '_blank');
+		const enlace = document.createElement("a");
+		enlace.href = "CV Mauricio Godoy.pdf";
+		enlace.download = "cv-Mauricio_Godoy.pdf"; // Nombre sugerido
+		document.body.appendChild(enlace);
+		enlace.click();
+		document.body.removeChild(enlace);
 	};
 	
 	<!--Función Enviar Mail-->
