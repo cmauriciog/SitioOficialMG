@@ -462,62 +462,62 @@
 			justify-content: center;
 		}
 		/* Modal */
-		.modal {
-			display: none; /* Oculto por defecto */
-			position: fixed;
-			top: calc(15vw);
-			left: calc(25vw);
-			width: 50%;
-			height: 150px;
-			background-color: rgba(0, 0, 128, 0.9); /* Fondo azul oscuro */
-			justify-content: center;
-			align-items: center;
-			z-index: 3;
-			overflow: auto;
-		}
+		/*.modal {*/
+		/*	display: none;*/ /* Oculto por defecto */
+		/*	position: fixed;*/
+		/*	top: calc(15vw);*/
+		/*	left: calc(25vw);*/
+		/*	width: 50%;*/
+		/*	height: 150px;*/
+		/*	background-color: rgba(0, 0, 128, 0.9);*/ /* Fondo azul oscuro */
+		/*	justify-content: center;*/
+		/*	align-items: center;*/
+		/*	z-index: 3;*/
+		/*	overflow: auto;*/
+		/*}
 		/* Contenedor del Modal */
-		.modal-contenido {
-			text-align: center;
-			padding: 5px;
-			border-radius: 10px;
-			position: absolute;
-			width: 90%;
-			height: 80%;
-			overflow: auto;
-		}
+		/*.modal-contenido {*/
+		/*	text-align: center;*/
+		/*	padding: 5px;*/
+		/*	border-radius: 10px;*/
+		/*	position: absolute;*/
+		/*	width: 90%;*/
+		/*	height: 80%;*/
+		/*	overflow: auto;*/
+		/*}*/
 		/* Imagen del Modal*/
-		.modal img {
-			width: 30%;
-			height: auto;
-			top: 0px;
-			align-items: center;
-			border-radius: 10px;
-			left: calc(35%);
-			position: absolute;
-		}
+		/*.modal img {*/
+		/*	width: 30%;*/
+		/*	height: auto;*/
+		/*	top: 0px;*/
+		/*	align-items: center;*/
+		/*	border-radius: 10px;*/
+		/*	left: calc(35%);*/
+		/*	position: absolute;*/
+		/*}*/
 		/* Texto del Modal*/
-		.modal p {
-			color: #87CEEB; /* Color celeste */
-			font-size: 20px;
-			margin: 0;
-			position: absolute;
-			top: 110px;
-		}
+		/*.modal p {*/
+		/*	color: #87CEEB;*/ /* Color celeste */
+		/*	font-size: 20px;*/
+		/*	margin: 0;*/
+		/*	position: absolute;*/
+		/*	top: 110px;*/
+		/*}*/
 		/* Botón para cerrar del Modal*/
-		.modal-boton-cerrar {
-			background-color: #87CEEB;
-			color: #000;
-			border: none;
-			font-size: 16px;
-			cursor: pointer;
-			border-radius: 5px;
-			position: absolute;
-			bottom: 5px;
-			left: calc(45%);
-		}
-		.modal-boton-cerrar:hover {
-			background-color: #66B2D6;
-		}
+		/*.modal-boton-cerrar {*/
+		/*	background-color: #87CEEB;*/
+		/*	color: #000;*/
+		/*	border: none;*/
+		/*	font-size: 16px;*/
+		/*	cursor: pointer;*/
+		/*	border-radius: 5px;*/
+		/*	position: absolute;*/
+		/*	bottom: 5px;*/
+		/*	left: calc(45%);*/
+		/*}*/
+		/*.modal-boton-cerrar:hover {*/
+		/*	background-color: #66B2D6;*/
+		/*}*/
 		/*Contenedor Grande*/
 		.contenedorgrande {
 			width: 100%;
@@ -916,7 +916,7 @@
 	</div>
 	-->
 
-	<!--Modal en caso de estar usando dispositivo movil-->
+	<!--Modal en caso de estar usando dispositivo movil
 	<div id="myModal" class="modal">
 		<div class="modal-contenido">
 			<img src="Dispositivomovil.jpg">
@@ -924,6 +924,7 @@
 			<button class="modal-boton-cerrar" id="closeModal" onclick="CerrarModal()">Cerrar</button>
 		</div>
 	</div>
+	-->
 	
 	<!--Sección de mapas-->
 	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
@@ -1040,27 +1041,27 @@
 	//var currentIndex = -1;
 	
 	// Funcionalidad para abrir y cerrar el modal
-	function CerrarModal() {
-		const modal = document.getElementById('myModal');
-		modal.style.display = 'none';
-		const elemento = document.querySelector('#menu');
-        elemento.className = "menu";
+	//function CerrarModal() {
+		//const modal = document.getElementById('myModal');
+		//modal.style.display = 'none';
+		//const elemento = document.querySelector('#menu');
+        //elemento.className = "menu";
 		//const elemento1 = document.querySelector('#barra_lateral');
         //elemento1.className = "barralateral disabled";
-		const elemento2 = document.querySelector('#colorModo');
-        elemento2.className = "fondo";
-		const elemento3 = document.querySelector('#botonbusqueda');
-        elemento3.className = "search-button";
-		document.body.classList.remove("no-scroll");
+		//const elemento2 = document.querySelector('#colorModo');
+        //elemento2.className = "fondo";
+		//const elemento3 = document.querySelector('#botonbusqueda');
+        //elemento3.className = "search-button";
+		//document.body.classList.remove("no-scroll");
 		//document.body.style.overflow = 'auto';
-	};
+	//};
 	
 	function detectarSistemaOperativo() {
 		const plataforma = navigator.platform.toLowerCase();
 		const agenteUsuario = navigator.userAgent.toLowerCase();
 		if (! plataforma.includes("win")) {
-			const modal = document.getElementById('myModal');
-			modal.style.display = 'flex';
+			//const modal = document.getElementById('myModal');
+			//modal.style.display = 'flex';
 			const fondo= document.getElementById('contenedorencabezado');
 			const elemento = document.querySelector('#menu');
 			elemento.className = "menu disabled";
