@@ -474,7 +474,7 @@
 		/*	align-items: center;*/
 		/*	z-index: 3;*/
 		/*	overflow: auto;*/
-		/*}
+		/*}*/
 		/* Contenedor del Modal */
 		/*.modal-contenido {*/
 		/*	text-align: center;*/
@@ -836,16 +836,16 @@
 						<li><a onclick="navigateTo(event, 'Encuestas')">Encuestas</a></li>
 						<li><a onclick="navigateTo(event, 'Contacto')">Contacto</a></li>
 					</ul>
-					<div class="busqueda">
-						<button class="search-button" id="botonbusqueda">
-						<i class="fas fa-search"></i>
-						</button>
-					</div>
-					<div id="campo_busqueda" class="campo_busqueda">
-						<input type="text" id="searchInput" placeholder="" autocomplete="off">
-						<label for="input">Escribe aquí...</label>
-					</div>
 				</div>
+			</div>
+			<div class="busqueda">
+				<button class="search-button" id="botonbusqueda">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
+			<div id="campo_busqueda" class="campo_busqueda">
+				<input type="text" id="searchInput" placeholder="" autocomplete="off">
+				<label for="input">Escribe aquí...</label>
 			</div>
 		</div>
     </div>
@@ -916,15 +916,14 @@
 	</div>
 	-->
 
-	<!--Modal en caso de estar usando dispositivo movil
-	<div id="myModal" class="modal">
+	<!--Modal en caso de estar usando dispositivo movil-->
+	<!--<div id="myModal" class="modal">
 		<div class="modal-contenido">
 			<img src="Dispositivomovil.jpg">
 			<p>Parece que estás conectado con celular...!!!</p>
 			<button class="modal-boton-cerrar" id="closeModal" onclick="CerrarModal()">Cerrar</button>
 		</div>
-	</div>
-	-->
+	</div>-->
 	
 	<!--Sección de mapas-->
 	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
@@ -1042,18 +1041,18 @@
 	
 	// Funcionalidad para abrir y cerrar el modal
 	//function CerrarModal() {
-		//const modal = document.getElementById('myModal');
-		//modal.style.display = 'none';
-		//const elemento = document.querySelector('#menu');
-        //elemento.className = "menu";
-		//const elemento1 = document.querySelector('#barra_lateral');
-        //elemento1.className = "barralateral disabled";
-		//const elemento2 = document.querySelector('#colorModo');
-        //elemento2.className = "fondo";
-		//const elemento3 = document.querySelector('#botonbusqueda');
-        //elemento3.className = "search-button";
-		//document.body.classList.remove("no-scroll");
-		//document.body.style.overflow = 'auto';
+	//	const modal = document.getElementById('myModal');
+	//	modal.style.display = 'none';
+	//	const elemento = document.querySelector('#menu');
+    //    elemento.className = "menu";
+	//	//const elemento1 = document.querySelector('#barra_lateral');
+    //    //elemento1.className = "barralateral disabled";
+	//	const elemento2 = document.querySelector('#colorModo');
+    //    elemento2.className = "fondo";
+	//	const elemento3 = document.querySelector('#botonbusqueda');
+    //    elemento3.className = "search-button";
+	//	document.body.classList.remove("no-scroll");
+	//	//document.body.style.overflow = 'auto';
 	//};
 	
 	function detectarSistemaOperativo() {
