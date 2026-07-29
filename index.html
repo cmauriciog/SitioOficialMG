@@ -93,6 +93,11 @@
 			height:100%;
 			object-fit:contain;
 		}
+		/*.imagen-encabezado img{*/
+		/*	width:50%;*/
+		/*	height:100%;*/
+		/*	object-fit:contain;*/
+		/*}*/
         /*.imagen-encabezado {*/
 		/*	grid-row: 1 / 3;*/ /* Ocupa ambas filas */
 		/*	display: flex;*/
@@ -330,6 +335,31 @@
 			.menu-toggle {
 				display: none;
 			}
+			/* Ajustes para celulares */
+			.tabla-encabezado{
+				grid-template-columns: 25% 75%;
+			}
+			/*.imagen-encabezado{*/
+			/*	justify-content:center;*/
+			/*	align-items:center;*/
+			/*}*/
+			/*.imagen-encabezado img{*/
+			/*	width:80%;*/
+			/*	height:95%;*/
+			/*	object-fit:contain;*/
+			/*}*/
+			.imagen-encabezado{
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				gap:4px;
+			}
+
+			.imagen-encabezado img{
+				width:48%;
+				height:95%;
+				object-fit:contain;
+			}
 		}
 		/*Modo de pantalla*/
         .fondo_button {
@@ -450,7 +480,7 @@
 			font-size: 20px;
 			cursor: pointer;
 			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none;  Ocultamos el botón inicialmente
+			display: none;  /* Ocultamos el botón inicialmente */
 			align-items: center;
 			justify-content: center;
 			z-index: 3;
@@ -1096,7 +1126,7 @@
 			elemento2.className = "fondo disabled";
 			const elemento3 = document.querySelector('#botonbusqueda');
 			elemento3.className = "search-button disabled";
-			document.body.classList.add("no-scroll");
+			//document.body.classList.add("no-scroll");
 		};
 	};
 	
