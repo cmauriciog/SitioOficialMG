@@ -361,6 +361,59 @@
 				object-fit:contain;
 			}
 		}
+		@media (min-width:768px){
+
+    .menu-toggle{
+        display:none;
+    }
+
+    .menu{
+        display:flex;
+        flex-direction:row;
+        position:static;
+        background:none;
+    }
+
+    .menu li{
+        margin:0 15px;
+        border:none;
+    }
+}
+		/* MÓVIL */
+		@media (max-width:767px){
+
+			.menu-toggle{
+				display:block;
+				font-size:30px;
+				background:none;
+				border:none;
+				cursor:pointer;
+			}
+
+			.menu{
+				display:none;
+				flex-direction:column;
+				position:absolute;
+				top:60px;
+				left:0;
+				width:100%;
+				background:white;
+				z-index:1000;
+			}
+
+			.menu.activo{
+				display:flex;
+			}
+
+			.menu li{
+				padding:12px;
+				border-bottom:1px solid #ddd;
+			}
+
+			.menu a{
+				font-size:18px;
+			}
+		}
 		/*Modo de pantalla*/
         .fondo_button {
 			font-size: 24px;
@@ -874,6 +927,27 @@
 			</div>
 			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
 			<div class="menu-nav">
+			<div id="barra_menu">
+				<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+				<ul class="menu" id="menu">
+					<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
+					<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
+					<li><a onclick="navigateTo(event, 'Excel')">Excel</a></li>
+					<li><a onclick="navigateTo(event, 'Encuestas')">Encuestas</a></li>
+					<li><a onclick="navigateTo(event, 'Contacto')">Contacto</a></li>
+				</ul>
+				<div class="busqueda">
+					<button class="search-button" id="botonbusqueda">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+				<div id="campo_busqueda" class="campo_busqueda">
+					<input type="text" id="searchInput" autocomplete="off">
+					<label>¿Qué buscás?...</label>
+				</div>
+			</div>
+		</div>
+			<!--<div class="menu-nav">
 				<div id="barra_menu" class="menu">
 					<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 					<ul class="menu" id="menu">
@@ -893,7 +967,7 @@
 						<label for="input">¿Qué buscás?...</label>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<!--<div class="busqueda">
 				<button class="search-button" id="botonbusqueda">
 					<i class="fas fa-search"></i>
@@ -1158,8 +1232,9 @@
 	
 	<!--Función menú hamburguesa para página no maximizada-->
 	function toggleMenu() {
-		const menu = document.getElementById('menu');
-		menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+		//const menu = document.getElementById('menu');
+		//menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+		document.getElementById("menu").classList.toggle("activo");
 	};
 	
 	<!--Bloque cambio modo oscuro/claro/azul-->
