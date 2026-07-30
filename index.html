@@ -269,15 +269,24 @@
 			}
 		}*/
 		/*Menú*/
-        .menu-nav {
+        /*.menu-nav {*/
+		/*	grid-row: 2 / 3;*/
+		/*	display: flex;*/
+		/*	flex-direction: column;*/
+		/*	justify-content: center;*/
+		/*	align-items: center;*/
+		/*	background-color: cyan;*/
+		/*	text-decoration: none; */
+        /*}*/
+		.menu-nav {
 			grid-row: 2 / 3;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			width:100%;
 			background-color: cyan;
 			text-decoration: none; 
-        }
+		}
         .menu {
 			list-style: none;
 			display: none;
@@ -435,7 +444,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			position: botom;
+			/*position: botom;*/
 			max-width: 100%;
 			height: auto;
 			margin-left: 10%;
@@ -908,6 +917,38 @@
 			color: #000;
 			font-weight: bold;
 		}
+		#barra_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.busqueda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    height: 100%;
+}
+
+.search-button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
     </style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
@@ -928,7 +969,7 @@
 			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
 			<div class="menu-nav">
 			<div id="barra_menu">
-				<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+				<!--<button class="menu-toggle" onclick="toggleMenu()">☰</button>-->
 				<ul class="menu" id="menu">
 					<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
 					<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
@@ -1290,10 +1331,20 @@
 	};
 	
 	<!--Activar/Desactivar Búsqueda-->
-	boton_busqueda.addEventListener('click', () => {
-      campo_busqueda.style.display = 'block';
-      texto_busqueda.focus();
-    });
+	botonbusqueda.addEventListener("click", function () {
+		if (campo_busqueda.style.display === "flex") {
+			// Ocultar
+			campo_busqueda.style.display = "none";
+		} else {
+			// Mostrar
+			campo_busqueda.style.display = "flex";
+			document.getElementById("searchInput").focus();
+		}
+	});
+	//boton_busqueda.addEventListener('click', () => {
+    //  campo_busqueda.style.display = 'block';
+    //  texto_busqueda.focus();
+    //});
 	
 	texto_busqueda.addEventListener('input', () => {
       if (texto_busqueda.value.trim() === '') {
