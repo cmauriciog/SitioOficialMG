@@ -32,7 +32,7 @@
 			position: relative;
 		}
 		.campo_busqueda input {
-			width: 250px;
+			width: 350px;
 			padding: 10px;
 			font-size: 16px;
 			border: 4px solid transparent;
@@ -51,16 +51,16 @@
 		.campo_busqueda label {
 			position: absolute;
 			top: 50%;
-			left: 10px;
+			left: 5px;
 			transform: translateY(-50%);
-			font-size: 16px;
+			font-size: 14px;
 			color: #aaa;
 			transition: all 0.3s ease-in-out;
 			pointer-events: none;
 		}
 		.campo_busqueda input:focus + label,
 		.campo_busqueda input:not(:placeholder-shown) + label {
-			top: 5px;
+			top: 9px;
 			font-size: 12px;
 			color: #ff9800;
 		}
@@ -69,53 +69,38 @@
         .swiper-slide { text-align: center; position: relative; }
         .swiper-slide img { width: 100%; border-radius: 10px; height: 100%;}
         .texto { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px; }
-		/*Contenedor Encabezado*/
-        .contenedorencabezado {
-			position: fixed;
-			width: 100%;
-			height: 100px;
-			z-index: 2;
-        }
-        .tabla-encabezado {
-			display: grid;
-			grid-template-columns: 10% 90%;/*0.5fr 2fr 1fr;*/ /* Tres columnas */
-			grid-template-rows: 50% 50%; /* Dos filas de 50% de alto cada una*/
-			height: 100%; /* Altura total del grid */
-        }
-		.imagen-encabezado{
-			grid-row: 1/3;
-			display:flex;
+		
+		/* ENCABEZADO */
+		.tabla-encabezado{
+			display:grid;
+			/* PC */
+			grid-template-columns:5% 95%;
+			/* dos filas de 10% de pantalla */
+			grid-template-rows:7vh 7vh;
+			height:14vh;
 			width:100%;
-			height:100%;
+			position:fixed;
+			top:0;
+			left:0;
+			background:#e8f5ff;
+			z-index:1000;
+		}
+		/* COLUMNA IZQUIERDA */
+		.imagen-encabezado{
+			grid-column:1;
+			grid-row:1 / 3;
+			display:flex;
+			flex-direction:column; /* siempre una debajo de otra */
+			justify-content:center;
+			align-items:center;
+			gap:5px;
+			overflow:hidden;
 		}
 		.imagen-encabezado img{
-			width:50%;
-			height:100%;
+			width:90%;
+			height:45%;
 			object-fit:contain;
 		}
-		/*.imagen-encabezado img{*/
-		/*	width:50%;*/
-		/*	height:100%;*/
-		/*	object-fit:contain;*/
-		/*}*/
-        /*.imagen-encabezado {*/
-		/*	grid-row: 1 / 3;*/ /* Ocupa ambas filas */
-		/*	display: flex;*/
-		/*	justify-content: center;*/
-		/*	align-items: center;*/
-		/*	max-width: 100%;*/
-		/*	max-height: 100%;*/
-		/*	overflow: hidden;*/
-        /*}*/
-		/*.imagen-encabezado img {*/
-		/*	width: 100%;*/
-		/*	height: auto;*/
-		/*}*/
-        /*.imagen-encabezado img {*/
-		/*	max-width: 80%;*/
-		/*	height: auto;*/
-		/*	object-fit: contain;*/
-        /*}*/
 		/*Animación de recuadro en encabezado*/
 		.imagen-encabezado span:nth-child(1) {
 			position: absolute;
@@ -188,19 +173,21 @@
 				transform: translateY(-100%);
 			}
 		}
-        .titulo {
-			grid-row: 1/2;
+		/* DERECHA FILA 1 */
+		.titulo{
+			grid-column:2;
+			grid-row:1;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			font-size:24px;
+			font-weight:bold;
 			background-color: #0302ab;
 			text-align: center;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			padding-bottom: 0px;
 			height: 100%;
 			color: #19ddee;
 			font-family: Stencil, Broadway, Impact, Arial, sans-serif;
-			font-weight: bold;
-			font-size: 16px;
 			transform: traslate(-50%, -50%);
 			border-bottom: .3vw solid #fff;
 			-webkit-text-stroke: 0.3vw #383d52;
@@ -213,7 +200,7 @@
 			--animation: rebote 2s infinite ease-in-out;
 		}
 		.titulo::before {
-			--grid-row: 1/2;
+			/*--grid-row: 1/2;*/
 			content: attr(data-text);
 			--position: absolute;
 			top: 10px;
@@ -241,11 +228,11 @@
 			to { transform: scale(1.5); opacity: 1;}
 		}
 		@keyframes animacion_titulo_2 {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-20px); }
-            50% { transform: translateY(0); }
-            75% { transform: translateY(-20px); }
-        }
+			0%, 100% { transform: translateY(0); }
+			25% { transform: translateY(-20px); }
+			50% { transform: translateY(0); }
+			75% { transform: translateY(-20px); }
+		}
 		/*@keyframes animacion_titulo_2 {
 			0% {
 				width: 0;
@@ -268,16 +255,36 @@
 				height: 12vw;
 			}
 		}*/
-		/*Menú*/
-        /*.menu-nav {*/
-		/*	grid-row: 2 / 3;*/
-		/*	display: flex;*/
-		/*	flex-direction: column;*/
-		/*	justify-content: center;*/
-		/*	align-items: center;*/
-		/*	background-color: cyan;*/
-		/*	text-decoration: none; */
-        /*}*/
+		/* DERECHA FILA 2 */
+		.menu{
+			grid-column:2;
+			grid-row:2;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			gap:20px;
+			list-style: none; /* quita los puntos */
+		}
+		/* CONTENIDO */
+		.contenido{
+			padding-top:20vh;
+			min-height:100vh;
+			background:#ffffff;
+		}
+		/* MOVIL */
+		@media(max-width:767px){
+			.tabla-encabezado{
+				grid-template-columns:20% 80%;
+				grid-template-rows:10vh 10vh;
+			}
+			.titulo{
+				font-size:18px;
+			}
+			.menu{
+				font-size:14px;
+				gap:10px;
+			}
+		}
 		.menu-nav {
 			grid-row: 2 / 3;
 			display:flex;
@@ -287,21 +294,12 @@
 			background-color: cyan;
 			text-decoration: none; 
 		}
-        .menu {
-			list-style: none;
-			display: none;
-			flex-direction: column;
-			position: absolute;
-			width: 200px;
-			border-radius: 8px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		}
 		.menu li {
 			text-align: center;
 			text-decoration: none; 
 			padding: 10px;
 			color: blue;
-			border-bottom: 1px solid #444;
+			border-bottom: none; /* quita la línea inferior */
 		}
 		.menu li:hover {
 			background: #05bff2;
@@ -322,106 +320,6 @@
 			color: white;
 			border: none;
 			background: none;
-		}
-		@media (min-width: 768px) {
-			.menu {
-				display: flex;
-				flex-direction: row;
-				position: static;
-				background: none;
-				box-shadow: none;
-				width: auto;
-				border-radius: 0;
-			}
-			.menu li {
-				border: none;
-				padding: 0;
-				margin: 0 15px;
-			}
-			.menu a {
-				font-size: 18px;
-			}
-			.menu-toggle {
-				display: none;
-			}
-			/* Ajustes para celulares */
-			.tabla-encabezado{
-				grid-template-columns: 25% 75%;
-			}
-			/*.imagen-encabezado{*/
-			/*	justify-content:center;*/
-			/*	align-items:center;*/
-			/*}*/
-			/*.imagen-encabezado img{*/
-			/*	width:80%;*/
-			/*	height:95%;*/
-			/*	object-fit:contain;*/
-			/*}*/
-			.imagen-encabezado{
-				display:flex;
-				justify-content:center;
-				align-items:center;
-				gap:4px;
-			}
-
-			.imagen-encabezado img{
-				width:48%;
-				height:95%;
-				object-fit:contain;
-			}
-		}
-		@media (min-width:768px){
-
-    .menu-toggle{
-        display:none;
-    }
-
-    .menu{
-        display:flex;
-        flex-direction:row;
-        position:static;
-        background:none;
-    }
-
-    .menu li{
-        margin:0 15px;
-        border:none;
-    }
-}
-		/* MÓVIL */
-		@media (max-width:767px){
-
-			.menu-toggle{
-				display:block;
-				font-size:30px;
-				background:none;
-				border:none;
-				cursor:pointer;
-			}
-
-			.menu{
-				display:none;
-				flex-direction:column;
-				position:absolute;
-				top:60px;
-				left:0;
-				width:100%;
-				background:white;
-				z-index:1000;
-			}
-
-			.menu.activo{
-				display:flex;
-			}
-
-			.menu li{
-				padding:12px;
-				border-bottom:1px solid #ddd;
-			}
-
-			.menu a{
-				font-size:18px;
-			}
 		}
 		/*Modo de pantalla*/
         .fondo_button {
@@ -569,63 +467,7 @@
 			align-items: center;
 			justify-content: center;
 		}
-		/* Modal */
-		/*.modal {*/
-		/*	display: none;*/ /* Oculto por defecto */
-		/*	position: fixed;*/
-		/*	top: calc(15vw);*/
-		/*	left: calc(25vw);*/
-		/*	width: 50%;*/
-		/*	height: 150px;*/
-		/*	background-color: rgba(0, 0, 128, 0.9);*/ /* Fondo azul oscuro */
-		/*	justify-content: center;*/
-		/*	align-items: center;*/
-		/*	z-index: 3;*/
-		/*	overflow: auto;*/
-		/*}*/
-		/* Contenedor del Modal */
-		/*.modal-contenido {*/
-		/*	text-align: center;*/
-		/*	padding: 5px;*/
-		/*	border-radius: 10px;*/
-		/*	position: absolute;*/
-		/*	width: 90%;*/
-		/*	height: 80%;*/
-		/*	overflow: auto;*/
-		/*}*/
-		/* Imagen del Modal*/
-		/*.modal img {*/
-		/*	width: 30%;*/
-		/*	height: auto;*/
-		/*	top: 0px;*/
-		/*	align-items: center;*/
-		/*	border-radius: 10px;*/
-		/*	left: calc(35%);*/
-		/*	position: absolute;*/
-		/*}*/
-		/* Texto del Modal*/
-		/*.modal p {*/
-		/*	color: #87CEEB;*/ /* Color celeste */
-		/*	font-size: 20px;*/
-		/*	margin: 0;*/
-		/*	position: absolute;*/
-		/*	top: 110px;*/
-		/*}*/
-		/* Botón para cerrar del Modal*/
-		/*.modal-boton-cerrar {*/
-		/*	background-color: #87CEEB;*/
-		/*	color: #000;*/
-		/*	border: none;*/
-		/*	font-size: 16px;*/
-		/*	cursor: pointer;*/
-		/*	border-radius: 5px;*/
-		/*	position: absolute;*/
-		/*	bottom: 5px;*/
-		/*	left: calc(45%);*/
-		/*}*/
-		/*.modal-boton-cerrar:hover {*/
-		/*	background-color: #66B2D6;*/
-		/*}*/
+		
 		/*Contenedor Grande*/
 		.contenedorgrande {
 			width: 100%;
@@ -918,37 +760,27 @@
 			font-weight: bold;
 		}
 		#barra_menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.busqueda {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10px;
-    height: 100%;
-}
-
-.search-button {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 15px;
+			width: 100%;
+		}
+		.busqueda {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: 10px;
+			height: 100%;
+		}
+		.search-button {
+			width: 40px;
+			height: 40px;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
     </style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
@@ -968,29 +800,7 @@
 			</div>
 			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
 			<div class="menu-nav">
-			<div id="barra_menu">
-				<!--<button class="menu-toggle" onclick="toggleMenu()">☰</button>-->
-				<ul class="menu" id="menu">
-					<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
-					<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
-					<li><a onclick="navigateTo(event, 'Excel')">Excel</a></li>
-					<li><a onclick="navigateTo(event, 'Encuestas')">Encuestas</a></li>
-					<li><a onclick="navigateTo(event, 'Contacto')">Contacto</a></li>
-				</ul>
-				<div class="busqueda">
-					<button class="search-button" id="botonbusqueda">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-				<div id="campo_busqueda" class="campo_busqueda">
-					<input type="text" id="searchInput" autocomplete="off">
-					<label>¿Qué buscás?...</label>
-				</div>
-			</div>
-		</div>
-			<!--<div class="menu-nav">
-				<div id="barra_menu" class="menu">
-					<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+				<div id="barra_menu">
 					<ul class="menu" id="menu">
 						<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
 						<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
@@ -1004,20 +814,11 @@
 						</button>
 					</div>
 					<div id="campo_busqueda" class="campo_busqueda">
-						<input type="text" id="searchInput" placeholder="" autocomplete="off">
-						<label for="input">¿Qué buscás?...</label>
+						<input type="text" id="searchInput" autocomplete="off">
+						<label>¿Qué buscás?...</label>
 					</div>
 				</div>
-			</div>-->
-			<!--<div class="busqueda">
-				<button class="search-button" id="botonbusqueda">
-					<i class="fas fa-search"></i>
-				</button>
 			</div>
-			<div id="campo_busqueda" class="campo_busqueda">
-				<input type="text" id="searchInput" placeholder="" autocomplete="off">
-				<label for="input">Escribe aquí...</label>
-			</div>-->
 		</div>
     </div>
 	
@@ -1060,41 +861,6 @@
 	<button id="prev" class="botonatras" title="Coincidencia Anterior"><i class="fa fa-arrow-left"></i></button>
     <button id="next" class="botonadelante" title="Siguiente Coincidencia"><i class="fa-solid fa-arrow-right"></i></button>
 	<button id="status" class="botontotal"  title="Coincidencias Encontradas"></button>
-	
-	<!--Barra Lateral-->
-	<!--
-	<div class="barralateral" id="barra_lateral">
-		<a href="#" class="barralateral-item">
-			<i class="fa-regular fa-map"></i>
-			<span class="text">&nbsp&nbsp&nbsp Mapas</span>
-		</a>
-		<a href="#" class="barralateral-item">
-			<i class="fa-brands fa-python"></i>
-			<span class="text">&nbsp&nbsp&nbsp Python</span>
-		</a>
-		<a href="#" class="barralateral-item">
-			<i class="fa-regular fa-file-excel"></i>
-			<span class="text">&nbsp&nbsp&nbsp Visual Basic Excel</span>
-		</a>
-		<a href="#" class="barralateral-item">
-				<i class="fa-solid fa-clipboard-list"></i>
-			<span class="text">&nbsp&nbsp&nbsp Encuestas Sincronizadas</span>
-		</a>
-		<a href="#" class="barralateral-item">
-			<i class="fa-solid fa-phone"></i>
-			<span class="text">&nbsp&nbsp&nbsp Contacto</span>
-		</a>
-	</div>
-	-->
-
-	<!--Modal en caso de estar usando dispositivo movil-->
-	<!--<div id="myModal" class="modal">
-		<div class="modal-contenido">
-			<img src="Dispositivomovil.jpg">
-			<p>Parece que estás conectado con celular...!!!</p>
-			<button class="modal-boton-cerrar" id="closeModal" onclick="CerrarModal()">Cerrar</button>
-		</div>
-	</div>-->
 	
 	<!--Sección de mapas-->
 	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
@@ -1178,7 +944,7 @@
 	<!--Pie de página-->
 	<footer>
 		<div class="columna-izquierda">
-			<p>&copy; 2025 Mauricio Godoy. Todos los derechos reservados.</p>
+			<p>&copy; 2026 Mauricio Godoy. Todos los derechos reservados.</p>
 			<p><a href="privacy.html" style="color: gray; text-decoration: none;">Política de Privacidad</a></p>
 		</div>
 		<div class="columna-derecha">
@@ -1202,46 +968,24 @@
 	const campo_busqueda=document.getElementById("campo_busqueda");
 	const texto_busqueda=document.getElementById("searchInput");
 	var indicecolor = 0;
-	//var searchInput = document.getElementById("searchInput");
 	var prevCoincidencia = document.getElementById("prev");
 	var proxCoincidencia = document.getElementById("next");
 	const cantidadCoincidencias = document.getElementById("status");
 	var contenido = document.getElementById("contenidogeneral");
 	var matches = [];
-	//var currentIndex = -1;
-	
-	// Funcionalidad para abrir y cerrar el modal
-	//function CerrarModal() {
-	//	const modal = document.getElementById('myModal');
-	//	modal.style.display = 'none';
-	//	const elemento = document.querySelector('#menu');
-    //    elemento.className = "menu";
-	//	//const elemento1 = document.querySelector('#barra_lateral');
-    //    //elemento1.className = "barralateral disabled";
-	//	const elemento2 = document.querySelector('#colorModo');
-    //    elemento2.className = "fondo";
-	//	const elemento3 = document.querySelector('#botonbusqueda');
-    //    elemento3.className = "search-button";
-	//	document.body.classList.remove("no-scroll");
-	//	//document.body.style.overflow = 'auto';
-	//};
 	
 	function detectarSistemaOperativo() {
 		const plataforma = navigator.platform.toLowerCase();
 		const agenteUsuario = navigator.userAgent.toLowerCase();
 		if (! plataforma.includes("win")) {
-			//const modal = document.getElementById('myModal');
-			//modal.style.display = 'flex';
 			const fondo= document.getElementById('contenedorencabezado');
 			const elemento = document.querySelector('#menu');
 			elemento.className = "menu disabled";
 			const elemento1 = document.querySelector('#barra_lateral');
-			//elemento1.className = "barralateral disabled";
 			const elemento2 = document.querySelector('#colorModo');
 			elemento2.className = "fondo disabled";
 			const elemento3 = document.querySelector('#botonbusqueda');
 			elemento3.className = "search-button disabled";
-			//document.body.classList.add("no-scroll");
 		};
 	};
 	
@@ -1273,8 +1017,6 @@
 	
 	<!--Función menú hamburguesa para página no maximizada-->
 	function toggleMenu() {
-		//const menu = document.getElementById('menu');
-		//menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 		document.getElementById("menu").classList.toggle("activo");
 	};
 	
@@ -1341,14 +1083,9 @@
 			document.getElementById("searchInput").focus();
 		}
 	});
-	//boton_busqueda.addEventListener('click', () => {
-    //  campo_busqueda.style.display = 'block';
-    //  texto_busqueda.focus();
-    //});
 	
 	texto_busqueda.addEventListener('input', () => {
       if (texto_busqueda.value.trim() === '') {
-        //campo_busqueda.style.display = 'none';
      } else {
 		cantidadCoincidencias.style.display = 'block';
 		proxCoincidencia.style.display = 'block';
@@ -1403,72 +1140,32 @@
 	// Buscar coincidencias solo en elementos con la clase "busca"
 	const elements = document.querySelectorAll('.busca');
 	elements.forEach(element => {
-	//	element.childNodes.forEach(node => {
-	//	if (node.nodeType === 3) { // Solo texto
-	//		const text = node.textContent;
-	//		const lowerText = text.toLowerCase();
-	//		let startIndex = 0;
-	//		let matchIndex;
-	//		while ((matchIndex = lowerText.indexOf(texto_a_buscar, startIndex)) !== -1) {
-	//		startIndex = matchIndex + texto_a_buscar.length;
-	//		const highlightedText = document.createElement('span');
-	//		highlightedText.className = 'highlight';
-	//		highlightedText.textContent = text.substr(matchIndex, texto_a_buscar.length);
-	//		const beforeMatch = document.createTextNode(text.substr(0, matchIndex));
-	//		const afterMatch = document.createTextNode(text.substr(startIndex));
-	//		const parent = node.parentNode;
-	//		parent.replaceChild(afterMatch, node);
-	//		parent.insertBefore(highlightedText, afterMatch);
-	//		parent.insertBefore(beforeMatch, highlightedText);
-	//		highlightedElements.push(highlightedText);
-	//		}
-	//	};
-	//});
-	
-	element.childNodes.forEach(node => {
-
-    if (node.nodeType !== 3) return;
-
-    const texto = node.textContent;
-
-    const regex = new RegExp("(" + texto_a_buscar.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
-
-    if (!regex.test(texto))
-        return;
-
-    regex.lastIndex = 0;
-
-    const fragment = document.createDocumentFragment();
-
-    let ultimoIndice = 0;
-
-    texto.replace(regex, (match, p1, offset) => {
-
-        fragment.appendChild(
-            document.createTextNode(texto.substring(ultimoIndice, offset))
-        );
-
-        const span = document.createElement("span");
-        span.className = "highlight";
-        span.textContent = match;
-
-        highlightedElements.push(span);
-
-        fragment.appendChild(span);
-
-        ultimoIndice = offset + match.length;
-    });
-
-    fragment.appendChild(
-        document.createTextNode(texto.substring(ultimoIndice))
-    );
-
-    node.parentNode.replaceChild(fragment, node);
-
-});
-	
+		element.childNodes.forEach(node => {
+			if (node.nodeType !== 3) return;
+			const texto = node.textContent;
+			const regex = new RegExp("(" + texto_a_buscar.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+			if (!regex.test(texto))
+				return;
+			regex.lastIndex = 0;
+			const fragment = document.createDocumentFragment();
+			let ultimoIndice = 0;
+			texto.replace(regex, (match, p1, offset) => {
+				fragment.appendChild(
+					document.createTextNode(texto.substring(ultimoIndice, offset))
+				);
+				const span = document.createElement("span");
+				span.className = "highlight";
+				span.textContent = match;
+				highlightedElements.push(span);
+				fragment.appendChild(span);
+				ultimoIndice = offset + match.length;
+			});
+			fragment.appendChild(
+				document.createTextNode(texto.substring(ultimoIndice))
+			);
+			node.parentNode.replaceChild(fragment, node);
+		});
 	});
-
 	updateMatchCounter();
 	if (highlightedElements.length > 0) {
 		currentIndex = 0;
