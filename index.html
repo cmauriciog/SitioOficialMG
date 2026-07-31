@@ -176,7 +176,7 @@
 		/* DERECHA FILA 1 */
 		.titulo{
 			grid-column:2;
-			grid-row:1;
+			grid-row:1/2;
 			display:flex;
 			justify-content:center;
 			align-items:center;
@@ -190,6 +190,8 @@
 			font-family: Stencil, Broadway, Impact, Arial, sans-serif;
 			transform: traslate(-50%, -50%);
 			border-bottom: .3vw solid #fff;
+			position: relative;
+			overflow: hidden;
 			-webkit-text-stroke: 0.3vw #383d52;
 			--max-width: 200%;
 			--max-height: 70px;
@@ -200,9 +202,7 @@
 			--animation: rebote 2s infinite ease-in-out;
 		}
 		.titulo::before {
-			/*--grid-row: 1/2;*/
 			content: attr(data-text);
-			--position: absolute;
 			top: 10px;
 			left: 0px;
 			--width: 100%;
@@ -213,6 +213,9 @@
 			-webkit-text-stroke: 0vw #383d52;
 			border-right: 2px solid #01fe87;
 			overflow: hidden;
+			position: absolute;
+			width: 100%;
+			pointer-events: none;
 			animation: animacion_titulo 6s forwards infinite, animacion_titulo_1 3s 6s forwards infinite, animacion_titulo_2 3s 9s forwards infinite;
 		}
 		@keyframes animacion_titulo {
@@ -233,60 +236,20 @@
 			50% { transform: translateY(0); }
 			75% { transform: translateY(-20px); }
 		}
-		/*@keyframes animacion_titulo_2 {
-			0% {
-				width: 0;
-				height: 0;
-			}
-			30% {
-				width: 50%;
-				height: 0;
-			}
-			60% {
-				width: 59vw;
-				height: 12vw;
-			}
-			80% {
-				width: 59vw;
-				height: 12vw;
-			}
-			100% {
-				width: 59vw;
-				height: 12vw;
-			}
-		}*/
 		/* DERECHA FILA 2 */
 		.menu{
 			grid-column:2;
 			grid-row:2;
 			display:flex;
+			flex-wrap:wrap;
 			justify-content:center;
 			align-items:center;
-			gap:20px;
+			gap:10px;
 			list-style: none; /* quita los puntos */
 		}
-		/* CONTENIDO */
-		.contenido{
-			padding-top:20vh;
-			min-height:100vh;
-			background:#ffffff;
-		}
-		/* MOVIL */
-		@media(max-width:767px){
-			.tabla-encabezado{
-				grid-template-columns:20% 80%;
-				grid-template-rows:10vh 10vh;
-			}
-			.titulo{
-				font-size:18px;
-			}
-			.menu{
-				font-size:14px;
-				gap:10px;
-			}
-		}
 		.menu-nav {
-			grid-row: 2 / 3;
+			/*grid-row: 2 / 3;*/
+			grid-row:2;
 			display:flex;
 			justify-content:center;
 			align-items:center;
@@ -321,31 +284,16 @@
 			border: none;
 			background: none;
 		}
-		/*Modo de pantalla*/
-        .fondo_button {
-			font-size: 24px;
-			color: white;
-			background-color: #4682B4;
-			border: none;
-			margin-left: 100px;
-			border-radius: 5px;
-			cursor: pointer;
-			z-index: 5;
-        }
-        .fondo_button:hover {
-			background-color: #87CEEB;
-			color: white;
-        }
 		/*Búsqueda*/
 		.busqueda {
-			grid-row: 1;
+			grid-row: 2;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			/*position: botom;*/
+			margin-left: 10px;
+			height: 100%;
 			max-width: 100%;
 			height: auto;
-			margin-left: 10%;
         }
 		.busqueda button {
 			font-size: 24px;
@@ -448,26 +396,10 @@
 		.botontotal:hover {
 			background-color: green;
 		}
-		/*Controles Busqueda*/
-		.controlesbusqueda {
-			position: fixed;
-			z-index: 2;
-			right: 20px;
-			top: 250px;
-			background-color: #007BFF;
-			color: white;
-			border: none;
-			border-radius: 50%;
-			width: 50px;
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none; /* Ocultamos el botón inicialmente */
-			align-items: center;
-			justify-content: center;
+		.contenedorencabezado{
+			position:fixed;
+			z-index:200;
 		}
-		
 		/*Contenedor Grande*/
 		.contenedorgrande {
 			width: 100%;
@@ -568,31 +500,6 @@
 			height: 50px;
 			background-color: gray;
         }
-		/*Barra Lateral*/
-		.barralateral {
-			position: fixed;
-			margin-top: 100px;
-			margin-left: 0px;
-			height: 250px;
-			width: 60px;
-			background-color: #007bff; /* Fondo azul */
-			transition: width 0.3s ease;
-			overflow: hidden;
-		}
-		.barralateral:hover {
-			width: 280px;
-		}
-		.barralateral-item {
-			display: flex;
-			align-items: center;
-			padding: 15px;
-			color: #00c4ff; /* Íconos celestes */
-			text-decoration: none;
-			transition: background 0.3s ease;
-		}
-		.barralateral-item:hover {
-			background-color: #0056b3; /* Fondo más oscuro al pasar el mouse */
-		}
 		.icon {
 			font-size: 24px;
 			margin-right: 10px;
@@ -601,9 +508,6 @@
 			white-space: nowrap;
 			opacity: 0;
 			transition: opacity 0.3s ease;
-		}
-		.barralateral:hover .text {
-			opacity: 1;
 		}
 		/*Botón flotante Volver al Inicio*/
 		.botonvolverinicio {
@@ -637,12 +541,12 @@
 			position: fixed;
 			bottom: 0;
 			width: 100%;
-			height: 70px;
-			z-index: 1;
+			height: 5%;
+			/*z-index: 9999;*/
         }
         .columna-izquierda {
             flex: 20; /* Columna más ancha */
-            text-align: center; /* Centrado del contenido */
+            text-align: left; /* A la izquierda */
         }
         .columna-derecha {
             flex: 1; /* Columna más estrecha */
@@ -652,7 +556,9 @@
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 20px;
+            /*padding: 10px 20px;*/
+			height: auto;
+			/*width:20%;*/
             font-size: 16px;
             cursor: pointer;
             display: inline-flex;
@@ -675,12 +581,6 @@
 			overflow: hidden;
 			height: 100%; /* Evita el scroll vertical */
 		}
-		/*Búsqueda*/
-		.search-container {
-			display: flex;
-			align-items: center;
-			position: relative;
-        }
         .search-button {
 			background-color: #007bff;
 			border: none;
@@ -692,6 +592,9 @@
 			align-items: center;
 			justify-content: center;
 			font-size: 16px;
+			width: 40px;
+			height: 40px;
+			padding: 0;
         }
         .search-button:hover {
 			background-color: #0056b3;
@@ -759,36 +662,62 @@
 			color: #000;
 			font-weight: bold;
 		}
-		#barra_menu {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 15px;
-			width: 100%;
+		
+		
+		/* MOVIL */
+		@media(max-width:767px){
+			.tabla-encabezado{
+				grid-template-columns:15% 85%;
+				grid-template-rows:7vh 7vh;
+			}
+			.titulo{
+				font-size:18px;
+			}
+			.menu{
+				font-size:10px;
+				gap:10px;
+			}
+			.menu a{
+				font-size:10px;
+			}
+			.menu li{
+				padding:5px;
+			}
+			.columna-izquierda{
+				flex:12;
+			}
+			.columna-derecha{
+				flex:8;
+				display:flex;
+				justify-content:flex-end;
+				align-items:center;
+			}
+			.boton-con-icono{
+				width:100%;
+				height:40px;
+				max-width:none;
+				font-size:14px;
+			}
+			.menu,
+			.menu *,
+			.busqueda,
+			.busqueda *{
+				pointer-events:auto;
+			}
+			footer,
+			footer *{
+				pointer-events:auto;
+			}
 		}
-		.busqueda {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-left: 10px;
-			height: 100%;
-		}
-		.search-button {
-			width: 40px;
-			height: 40px;
-			padding: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+
     </style>
 	<!--Icono para la pestaña del navegador-->
 	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
 </head>
 <body>
-	<!--Contenedor general para realizar las búsquedas de coincidencias-->
-	<div id="contenidogeneral">
-    <div class="contenedorencabezado" id="contenedorencabezado">
+<!--Contenedor general para realizar las búsquedas de coincidencias-->
+<div id="contenidogeneral">
+	<div class="contenedorencabezado" id="contenedorencabezado">
 		<div class="tabla-encabezado">
 			<div class="imagen-encabezado">
 				<span></span>
@@ -800,7 +729,6 @@
 			</div>
 			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
 			<div class="menu-nav">
-				<div id="barra_menu">
 					<ul class="menu" id="menu">
 						<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
 						<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
@@ -817,10 +745,9 @@
 						<input type="text" id="searchInput" autocomplete="off">
 						<label>¿Qué buscás?...</label>
 					</div>
-				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 	
 	<!--Sección para el carrusel-->
 	<div id="intro" height="50%" width="100%">
@@ -859,36 +786,36 @@
 	
 	<!--Controles de las coincidencias-->
 	<button id="prev" class="botonatras" title="Coincidencia Anterior"><i class="fa fa-arrow-left"></i></button>
-    <button id="next" class="botonadelante" title="Siguiente Coincidencia"><i class="fa-solid fa-arrow-right"></i></button>
+	<button id="next" class="botonadelante" title="Siguiente Coincidencia"><i class="fa-solid fa-arrow-right"></i></button>
 	<button id="status" class="botontotal"  title="Coincidencias Encontradas"></button>
 	
 	<!--Sección de mapas-->
 	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
-        <div class="fila">
-            <div class="caja">
+		<div class="fila">
+			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamzapublico/"></object>
-                <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamzapublico/')">Ampliar</button>
+				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamzapublico/')">Ampliar</button>
 				<p class="busca">Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
-            </div>
-            <div class="caja busca">
+			</div>
+			<div class="caja busca">
 				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
-                <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
+				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
 				<p class="busca">Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-            </div>
-        </div>
-        <div class="fila">
-            <div class="caja">
+			</div>
+		</div>
+		<div class="fila">
+			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
-                <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
+				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
 				<p class="busca">Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-            </div>
-            <div class="caja">
+			</div>
+			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamza/"></object>
-                <button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
+				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
 				<p class="busca">Mapa en desarrollo. Si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 
 	<div class="separador"></div>
 
@@ -939,23 +866,22 @@
 		<br>
 		<button class="btncolores" onclick="enviarMail()">Enviarme un mail</button></p>
 	</div>
-	</div>
+</div>
 
-	<!--Pie de página-->
-	<footer>
-		<div class="columna-izquierda">
-			<p>&copy; 2026 Mauricio Godoy. Todos los derechos reservados.</p>
-			<p><a href="privacy.html" style="color: gray; text-decoration: none;">Política de Privacidad</a></p>
-		</div>
-		<div class="columna-derecha">
-			<button class="boton-con-icono" id="colorModo">
-				<i id="iconoModo" class="fas fa-moon" title="Cambiar a fondo oscuro"></i>
-				<span id="labelModo" style="font-size:12px" title="Cambiar a fondo oscuro">Fondo Negro</span>
-			</button>
-		</div>
-    </footer>
+<!--Pie de página-->
+<footer>
+	<div class="columna-izquierda">
+		<p>&copy; 2026 Mauricio Godoy</p>
+	</div>
+	<div class="columna-derecha">
+		<button class="boton-con-icono" id="colorModo">
+			<i id="iconoModo" class="fas fa-moon" title="Cambiar a fondo oscuro"></i>
+			<span id="labelModo" style="font-size:12px" title="Cambiar a fondo oscuro">Fondo Negro</span>
+		</button>
+	</div>
+</footer>
 <script>
-	<!--Variables globales-->
+	//Variables globales
 	var cuerpo = document.body;
 	var contenedor_separador=document.querySelectorAll(".separador");
 	var contenedor_grande=document.querySelectorAll(".contenedorgrande");
@@ -991,11 +917,11 @@
 	
 	detectarSistemaOperativo();
 	
-	<!--Función para abrir pestaña nueva con mapa--!
+	//Función para abrir pestaña nueva con mapa
 	function AmpliarMapa(web) {
 		window.open(web, "_blank");
 	};
-	<!--Funciones para el botón flotante-->
+	//Funciones para el botón flotante
 	const botonFlotante = document.getElementById('botonFlotante');
 
 	// Mostrar el botón cuando se desplaza hacia abajo
@@ -1015,12 +941,12 @@
 		});
 	});
 	
-	<!--Función menú hamburguesa para página no maximizada-->
+	//Función menú hamburguesa para página no maximizada
 	function toggleMenu() {
 		document.getElementById("menu").classList.toggle("activo");
 	};
 	
-	<!--Bloque cambio modo oscuro/claro/azul-->
+	//Bloque cambio modo oscuro/claro/azul
 	// Lista de fondos y nombres de íconos (utilizando FontAwesome como referencia)
 
 	//Clic en botón Modo
@@ -1072,11 +998,14 @@
 		label_modo.title=title;
 	};
 	
-	<!--Activar/Desactivar Búsqueda-->
+	//Activar/Desactivar Búsqueda
 	botonbusqueda.addEventListener("click", function () {
 		if (campo_busqueda.style.display === "flex") {
 			// Ocultar
 			campo_busqueda.style.display = "none";
+			prevCoincidencia.style.display="none";
+			proxCoincidencia.style.display="none";
+			cantidadCoincidencias.style.display="none";
 		} else {
 			// Mostrar
 			campo_busqueda.style.display = "flex";
@@ -1093,7 +1022,7 @@
     });
 
 	
-	<!--Función para ir a la sección-->
+	//Función para ir a la sección
 	function navigateTo(event, sectionId) {
 		event.preventDefault();
 		const section = document.getElementById(sectionId);
@@ -1105,7 +1034,7 @@
 		};
 	};
 	
-	<!--Bloque para el carrusel-->
+	//Bloque para el carrusel
 	var swiper = new Swiper(".mySwiper", {
         loop: true,
         pagination: { el: ".swiper-pagination", clickable: true },
@@ -1113,7 +1042,7 @@
         autoplay: { delay: 5000 }
     });
 
-	<!--Bloque para las búsquedas-->
+	//Bloque para las búsquedas
 	let highlightedElements = [];
 	let currentIndex = -1;
 
@@ -1203,7 +1132,7 @@
 	proxCoincidencia.addEventListener('click', () => navigate('next'));
 	prevCoincidencia.addEventListener('click', () => navigate('prev'));
 	
-	<!--Descargar archivo-->
+	//Descargar archivo
 	function descargarArchivo() {
 		const enlace = document.createElement("a");
 		enlace.href = "CV_Claudio_Mauricio_Godoy.pdf";
@@ -1213,15 +1142,15 @@
 		document.body.removeChild(enlace);
 	};
 	
-	<!--Función Enviar Mail-->
+	//Función Enviar Mail
 	function enviarMail() {
 		window.location.href = "mailto:cmauriciogodoy@gmail.com?subject=HOLA...!!!&body=Te contacto para comentarte que.... .-";
 	}
 	
-	<!--Iniciar la función para animar las entradas en escenas de las imágenes de las secciones-->
+	//Iniciar la función para animar las entradas en escenas de las imágenes de las secciones
 	AOS.init({duration: 1000});
 	
-	<!--Ir al tope superior cada vez que se ingrese-->
+	//Ir al tope superior cada vez que se ingrese
 	window.onload = function() {
         window.scrollTo(0, 0);
     };
