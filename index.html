@@ -65,7 +65,7 @@
 			color: #ff9800;
 		}
 		/*Carrusel*/
-		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; top: 80px}
+		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; margin-top: 5vh}
         .swiper-slide { text-align: center; position: relative; }
         .swiper-slide img { width: 100%; border-radius: 10px; height: 100%;}
         .texto { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px; }
@@ -248,7 +248,6 @@
 			list-style: none; /* quita los puntos */
 		}
 		.menu-nav {
-			/*grid-row: 2 / 3;*/
 			grid-row:2;
 			display:flex;
 			justify-content:center;
@@ -404,7 +403,7 @@
 		.contenedorgrande {
 			width: 100%;
 			height: 200vh;
-			padding: 110px 0px 0px 0px;
+			padding: 10px 0px 0px 0px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -674,8 +673,8 @@
 				font-size:18px;
 			}
 			.menu{
-				font-size:10px;
-				gap:10px;
+				font-size:12px;
+				gap:8px;
 			}
 			.menu a{
 				font-size:10px;
@@ -698,6 +697,15 @@
 				max-width:none;
 				font-size:14px;
 			}
+			.swiper {
+				width: 80%;
+				height: 30vh;   /* podés probar 25vh, 28vh o 35vh */
+				margin-top: 5vh;
+			}
+			.texto {
+				font-size: 14px;
+				padding: 6px;
+			}
 			.menu,
 			.menu *,
 			.busqueda,
@@ -707,6 +715,12 @@
 			footer,
 			footer *{
 				pointer-events:auto;
+			}
+		}
+		@media (max-width: 767px) and (orientation: portrait) {
+			.swiper {
+				height: 25vh;
+				width: 30vh;
 			}
 		}
 
@@ -750,7 +764,7 @@
 	</div>
 	
 	<!--Sección para el carrusel-->
-	<div id="intro" height="50%" width="100%">
+	<div id="intro">
 		<div class="swiper mySwiper">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
