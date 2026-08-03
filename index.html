@@ -65,10 +65,10 @@
 			color: #ff9800;
 		}
 		/*Carrusel*/
-		.swiper { width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; margin-top: 5vh}
-        .swiper-slide { text-align: center; position: relative; }
-        .swiper-slide img { width: 100%; border-radius: 10px; height: 100%;}
-        .texto { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px; }
+		.swiper {width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; margin-top: 16vh}
+        .swiper-slide {text-align: center; position: relative;}
+        .swiper-slide img {width: 100%; border-radius: 10px; height: 100%;}
+        .texto {position: absolute; bottom: 5px; width: 80%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px;}
 		
 		/* ENCABEZADO */
 		.tabla-encabezado{
@@ -191,21 +191,22 @@
 			transform: traslate(-50%, -50%);
 			border-bottom: .3vw solid #fff;
 			position: relative;
+			z-index: 5;
 			overflow: hidden;
-			-webkit-text-stroke: 0.3vw #383d52;
-			--max-width: 200%;
-			--max-height: 70px;
-			--animation: animacion_titulo 2s forwards
-			--animacion_titulo_2 2s 3s forwards;
-			--overflow: hidden;
-			--text-decoration: underline 5px solid blue;
-			--animation: rebote 2s infinite ease-in-out;
+			webkit-text-stroke: 0.3vw #383d52;
+			max-width: 200%;
+			max-height: 70px;
+			/*animation: animacion_titulo 2s forwards*/
+			/*animacion_titulo_2 2s 3s forwards;*/
+			overflow: hidden;
+			margin-top: 7px;
+			text-decoration: underline 5px solid blue;
+			animation: rebote 2s infinite ease-in-out;
 		}
 		.titulo::before {
 			content: attr(data-text);
 			top: 10px;
 			left: 0px;
-			--width: 100%;
 			height: 100%;
 			color: #01fe87;
 			background-color: blue;
@@ -216,7 +217,31 @@
 			position: absolute;
 			width: 100%;
 			pointer-events: none;
-			animation: animacion_titulo 6s forwards infinite, animacion_titulo_1 3s 6s forwards infinite, animacion_titulo_2 3s 9s forwards infinite;
+			/*animation: animacion_titulo 6s forwards infinite, animacion_titulo_1 3s 6s forwards infinite, animacion_titulo_2 3s 9s forwards infinite;*/
+			/*animation: rebote 3s infinite ease-in-out 7s infinite;*/
+		}
+		@keyframes rebote{
+			0%{
+				transform: translateY(-120%);
+				opacity:0;
+			}
+
+			50%{
+				transform: translateY(20%);
+				opacity:1;
+			}
+
+			70%{
+				transform: translateY(-10%);
+			}
+
+			85%{
+				transform: translateY(5%);
+			}
+
+			100%{
+				transform: translateY(0);
+			}
 		}
 		@keyframes animacion_titulo {
 			0%,10%,100% {
@@ -409,6 +434,7 @@
 			justify-content: space-between;
 			align-items: center;
 			z-index: 1;
+			margin-top: 20px;
         }
         .fila {
 			width: 100%;
@@ -470,6 +496,7 @@
 			width: 100%;
 			height: calc(100vh - 150px);
 			box-sizing: border-box;
+			margin-top: 20px;
 		}
         .contenedorchico img {
 			width: calc(80% - 2%); /* Ancho ajustado para incluir separación */
@@ -603,7 +630,7 @@
 		}
 		/*Botón de descarga*/
 		.btncolores {
-			margin: 100px;
+			margin:20px 20px 20px 35%;
 			padding: 15px 40px;
 			border: none;
 			outline: none;
@@ -628,9 +655,9 @@
 		.btncolores::before {
 			content: "";
 			background: linear-gradient(
-			45deg,
-			#FF0000, #FF7300, #FFFB00, #48FF00,
-			#00FFD5, #002BFF, #FF00C8, #FF0000
+				45deg,
+				#FF0000, #FF7300, #FFFB00, #48FF00,
+				#00FFD5, #002BFF, #FF00C8, #FF0000
 			);
 			position: absolute;
 			top: -12px;
@@ -638,21 +665,17 @@
 			background-size: 600%;
 			z-index: -1;
 			width: calc(100% + 24px);
-			height:  calc(100% + 24px);
+			height: calc(100% + 24px);
 			filter: blur(8px);
-			animation: glowing 20s linear infinite;
-			transition: opacity .3s ease-in-out;
 			border-radius: 10px;
-			opacity: 0;
+
+			animation: glowing 20s linear infinite;
+			opacity: 1;
 		}
 		@keyframes glowing {
 			0% {background-position: 0 0;}
 			50% {background-position: 400% 0;}
 			100% {background-position: 0 0;}
-		}
-		/* hover */
-		.btncolores:hover::before {
-			opacity: 1;
 		}
 		.btncolores:active:after {
 			background: transparent;
@@ -673,11 +696,14 @@
 				font-size:18px;
 			}
 			.menu{
-				font-size:12px;
+				font-size:13px;
+				font-weight: bold;
 				gap:8px;
 			}
 			.menu a{
-				font-size:10px;
+				font-size:13px;
+				font-weight: bold;
+				gap:8px;
 			}
 			.menu li{
 				padding:5px;
@@ -818,7 +844,7 @@
 			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamzapublico/"></object>
 				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamzapublico/')">Ampliar</button>
-				<p class="busca">Este mapa permite hacer busquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se hallas los valores indicados y arroja un cuadro estadistico. También es posible marcar rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
+				<p class="busca">Este mapa permite hacer búsquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se encuentran los valores indicados y arroja un cuadro estadístico. También te traza rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
 			</div>
 			<div class="caja busca">
 				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
@@ -830,7 +856,7 @@
 			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
 				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
-				<p class="busca">Este mapa trabaja con la division politica a nivel mundial. Solo debes escribir el nombre de la zona deseada y te arrojara un lista de coincidencias a nivel departamental, provincial y nacional. Selecciona la que desees y te hará un zoom sobre la misma, marcando sus limites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
+				<p class="busca">Este mapa trabaja con la división política a nivel mundial. Solo debés escribir el nombre de la zona deseada y te arrojará un lista de coincidencias a nivel departamental, provincial y nacional. Seleccioná la que desees y te hará un zoom sobre la misma, marcando sus límites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
 			</div>
 			<div class="caja">
 				<object type="text/html" data="https://cmauriciog.github.io/intaeeamza/"></object>
@@ -848,7 +874,7 @@
 		<p class="busca"><span class="letranegrita busca">Python</span><br><br>
 		Python es un lenguaje qué código abierto y gratuito muy versátil para aplicar en distintas disciplinas.<br><br>Estas y otras características lo han convertido lenguaje de amplio uso.<br><br>
 		Además, cuenta con una nutrida comunidad de programadores que están enriqueciendo en forma constante y sin pausa sus complementos o herramientas aplicables a distintas necesidades del usuario.<br><br>
-		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar y solicitar distintas consultas a una base de datos.</p>
+		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar registros y solicitar distintas consultas a una base de datos.</p>
 	</div>
 	
 	<div class="separador"></div>
@@ -857,9 +883,9 @@
 	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Excel.jpg" />
 		<p class="busca"><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
-		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadisticas; existe la posibilidad de sumarle herramientas secundarias para automatizar algunas de sus prestaciones.<br><br>
-		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economia domestica y de un pequeño negocio.<br><br>
-		En esta imagen se presenta una planilla preparada para consultar, registrar y modificar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas y graficos.</p>
+		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadísticas; existe la posibilidad de sumarle herramientas avanzadas para automatizar algunas de sus prestaciones.<br><br>
+		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economía doméstica y de un pequeño negocio.<br><br>
+		En esta imagen se presenta una planilla preparada para registrar, modificar y consultar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas o recordatorios y gráficos.</p>
 	</div>
 
 	<div class="separador"></div>
@@ -868,11 +894,11 @@
 	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Encuesta.jpg" />
 		<p class="busca"><span class="letranegrita busca">Encuestas Digitales</span><br><br>
-		Existen muchos trabajos que exigen que la informacion sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
+		Existen muchos trabajos que exigen que la información sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
 		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
-		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades.<br><br>
-		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los analisis correspondientes.<br><br>
-		En esta imagen se puede observar una interfaz de la aplicacion movil y el registro resultante.</p>
+		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades y el diseño de los formularios correspondientes para que la recolección de la información sea simple, completa y lógica.<br><br>
+		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los análisis correspondientes.<br><br>
+		En esta imagen se puede observar una interfaz de la aplicación móvil y el registro resultante.</p>
 	</div>
 	
 	<div class="separador"></div>
@@ -881,13 +907,13 @@
 	<div id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
 		<img src="Contacto.jpg" />
 		<p class="busca"><span class="letranegrita busca">Contacto</span><br><br>
-		A continuacion encontraras los medios para contactarme...<br><br>
+		A continuación encontrarás los medios para contactarme...<br><br>
 		<!--Sección para descargas-->
-		<button class="btncolores" onclick="descargarArchivo()">Descargar CV</button>
+		<button id="descargar cv" class="btncolores" onclick="descargarArchivo()">Descargar CV</button>
 		<br>
 		Mi mail:
 		<br>
-		<button class="btncolores" onclick="enviarMail()">Enviarme un mail</button></p>
+		<button id="enviarmail" class="btncolores" onclick="enviarMail()">Enviarme un mail</button></p>
 	</div>
 </div>
 
