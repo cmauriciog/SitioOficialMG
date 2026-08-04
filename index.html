@@ -65,7 +65,7 @@
 			color: #ff9800;
 		}
 		/*Carrusel*/
-		.swiper {width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; max-height: 300px; margin-top: 40vh}
+		.swiper {width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; max-height: 300px; margin-top: 18vh}
         .swiper-slide {text-align: center; position: relative;}
         .swiper-slide img {width: 100%; border-radius: 10px; height: 50vh;}
         .texto {position: absolute; bottom: 5px; width: 80%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px;}
@@ -705,9 +705,9 @@
 				gap:8px;
 			}
 			.menu a{
-				font-size:12px;
+				font-size:11px;
 				font-weight: bold;
-				gap:5px;
+				/*gap:5px;*/
 			}
 			.menu li{
 				padding:5px;
@@ -727,11 +727,6 @@
 				max-width:none;
 				font-size:14px;
 			}
-			/*.swiper {*/
-			/*	width: 80%;*/
-			/*	height: 5vh;*/   /* podés probar 25vh, 28vh o 35vh */
-			/*	margin-top: 5vh;*/
-			/*}*/
 			.texto {
 				font-size: 14px;
 				padding: 6px;
@@ -759,7 +754,7 @@
 		@media (max-width: 767px) and (orientation: portrait) {
 			.swiper {
 				height: 25vh;
-				width: 30vh;
+				width: 25vh;
 			}
 		}
 
@@ -808,7 +803,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<img src="Mapas.jpg" alt="Imagen 1" onclick="navigateTo(event, 'Mapas')">
-					<div class="texto">Toma de datos a campo, generación y publicación de <b>mapas online</b>.</div>
+					<div class="texto">Generación y publicación de <b>mapas online</b>.</div>
 					<!--Un mapa es una representación gráfica a escala real de lo que hay sobre la superficie terrestre. Con la ayuda de herramientas de cartografía de uso libre y gratuito, es posible crear editar y hasta publicar en internet mapas de distintas temáticas.-->
 				</div>
 				<div class="swiper-slide">
