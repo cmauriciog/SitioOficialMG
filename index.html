@@ -712,10 +712,6 @@
 			.menu li{
 				padding:5px;
 			}
-			.menu li a {
-				background: red !important;
-				color: white !important;
-			}
 			.columna-izquierda{
 				flex:12;
 			}
@@ -757,6 +753,10 @@
 		}
 		/* Estilos para cuando el dispositivo móvil está en VERTICAL */
 		@media (max-width: 767px) and (orientation: portrait) {
+			/*.swiper {*/
+			/*	height: 15vh;*/
+			/*	width: 25vh;*/
+			/*}*/
 		}
 		
 		/* Estilos para cuando el dispositivo móvil está en HORIZONTAL */
@@ -764,23 +764,6 @@
 			.swiper {
 				height: 30vh;
 				width: 50vh;
-				margin-bottom: 5vh;
-			}
-			.contenedorgrande {
-				margin-top: 5px;
-			}
-			.menu,
-			.menu *,
-			.busqueda,
-			.busqueda *{
-				pointer-events:auto;
-			}
-			.swiper-slide img *{
-				pointer-events:auto;
-			}
-			footer,
-			footer *{
-				pointer-events:auto;
 			}
 		}
 
