@@ -1,1216 +1,1554 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Oficial Mauricio Godoy</title>
-	<!--Enlace para estilo del carrusel-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<!--Enlace y script para usar las animaciones-->
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Enlace al CDN de Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-        }
-		/*Cuerpo*/
-        body {
-			margin: 0;
-			font-family: Arial, sans-serif;
-			height: 500vh;
-			transition: background-color 0.5s ease;
-			background-color: var(--background-light);
-			color: var(--text-light);
-        }
-		/*Formateo del input*/
-		.campo_busqueda {
-			position: relative;
-		}
-		.campo_busqueda input {
-			width: 350px;
-			padding: 10px;
-			font-size: 16px;
-			border: 4px solid transparent;
-			border-radius: 5px;
-			outline: none;
-			transition: all 0.3s ease-in-out;
-		}
-		.campo_busqueda input:focus {
-			border-color: #ff9800;
-			box-shadow: 0 0 10px #ff9800;
-			transform: scale(1.05);
-			background-color: #eed519;
-			color: #ee6d19;
-			font-weight: bold;
-		}
-		.campo_busqueda label {
-			position: absolute;
-			top: 50%;
-			left: 5px;
-			transform: translateY(-50%);
-			font-size: 14px;
-			color: #aaa;
-			transition: all 0.3s ease-in-out;
-			pointer-events: none;
-		}
-		.campo_busqueda input:focus + label,
-		.campo_busqueda input:not(:placeholder-shown) + label {
-			top: 9px;
-			font-size: 12px;
-			color: #ff9800;
-		}
-		/*Carrusel*/
-		.swiper {width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); height: 50vh; max-height: 300px; margin-top: 18vh}
-        .swiper-slide {text-align: center; position: relative;}
-        .swiper-slide img {width: 100%; border-radius: 10px; height: 50vh;}
-        .texto {position: absolute; bottom: 5px; width: 80%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); color: #fff; padding: 10px; border-radius: 5px;}
-		
-		/* ENCABEZADO */
-		.tabla-encabezado{
-			display:grid;
-			/* PC */
-			grid-template-columns:5% 95%;
-			/* dos filas de 10% de pantalla */
-			grid-template-rows:7vh 7vh;
-			height:14vh;
-			width:100%;
-			position:fixed;
-			top:0;
-			left:0;
-			background:#e8f5ff;
-			z-index:1000;
-		}
-		/* COLUMNA IZQUIERDA */
-		.imagen-encabezado{
-			grid-column:1;
-			grid-row:1 / 3;
-			display:flex;
-			flex-direction:column; /* siempre una debajo de otra */
-			justify-content:center;
-			align-items:center;
-			gap:5px;
-			overflow:hidden;
-		}
-		.imagen-encabezado img{
-			width:90%;
-			height:45%;
-			object-fit:contain;
-		}
-		/*Animación de recuadro en encabezado*/
-		.imagen-encabezado span:nth-child(1) {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 5px;
-			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animacion_uno 1s linear infinite;
-		}
-		@keyframes animacion_uno {
-			0% {
-				transform: translateX(-100%);
-			}
-			100% {
-				transform: translateX(100%);
-			}
-		}
-		.imagen-encabezado span:nth-child(2) {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 5px;
-			height: 50%;
-			background: linear-gradient(to bottom, transparent, #2b8cbe);
-			animation: animacion_dos 0.5s linear infinite;
-			animation-delay: 1.5s;
-		}
-		@keyframes animacion_dos {
-			0% {
-				transform: translateY(-100%);
-			}
-			100% {
-				transform: translateY(100%);
-			}
-		}
-		.imagen-encabezado span:nth-child(3) {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 5px;
-			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animacion_tres 1s linear infinite;
-			animation-delay: 0.5s;
-		}
-		@keyframes animacion_tres {
-			0% {
-				transform: translateX(100%);
-			}
-			100% {
-				transform: translateX(-100%);
-			}
-		}
-		.imagen-encabezado span:nth-child(4) {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 5px;
-			height: 50%;
-			background: linear-gradient(to right, transparent, #2b8cbe);
-			animation: animacion_cuatro 1s linear infinite;
-			animation-delay: 1.5s;
-		}
-		@keyframes animacion_cuatro {
-			0% {
-				transform: translateY(100%);
-			}
-			100% {
-				transform: translateY(-100%);
-			}
-		}
-		/* DERECHA FILA 1 */
-		.titulo{
-			grid-column:2;
-			grid-row:1/2;
-			display:flex;
-			justify-content:center;
-			align-items:center;
-			font-size:24px;
-			font-weight:bold;
-			background-color: #0302ab;
-			text-align: center;
-			padding-bottom: 0px;
-			height: 100%;
-			color: #19ddee;
-			font-family: Stencil, Broadway, Impact, Arial, sans-serif;
-			transform: traslate(-50%, -50%);
-			border-bottom: .3vw solid #fff;
-			position: relative;
-			z-index: 5;
-			overflow: hidden;
-			webkit-text-stroke: 0.3vw #383d52;
-			max-width: 200%;
-			max-height: 70px;
-			/*animation: animacion_titulo 2s forwards*/
-			/*animacion_titulo_2 2s 3s forwards;*/
-			overflow: hidden;
-			margin-top: 7px;
-			text-decoration: underline 5px solid blue;
-			animation: rebote 2s infinite ease-in-out;
-		}
-		.titulo::before {
-			content: attr(data-text);
-			top: 10px;
-			left: 0px;
-			height: 100%;
-			color: #01fe87;
-			background-color: blue;
-			padding-bottom: 0px;
-			-webkit-text-stroke: 0vw #383d52;
-			border-right: 2px solid #01fe87;
-			overflow: hidden;
-			position: absolute;
-			width: 100%;
-			pointer-events: none;
-			/*animation: animacion_titulo 6s forwards infinite, animacion_titulo_1 3s 6s forwards infinite, animacion_titulo_2 3s 9s forwards infinite;*/
-			/*animation: rebote 3s infinite ease-in-out 7s infinite;*/
-		}
-		@keyframes rebote{
-			0%{
-				transform: translateY(-120%);
-				opacity:0;
-			}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Acuario La Mojarrita Cordobesa - Peces, Acuarios y Accesorios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+html{
+	scroll-behavior:smooth;
+}
+body{
+	font-family:Arial, sans-serif;
+	background:
+	linear-gradient(
+		180deg,
+		#eef9ff,
+		#dff5ff,
+		#f8fdff
+	);
+}
+:root{
+	--azul:#0077b6;
+	--celeste:#00b4d8;
+	--agua:#90e0ef;
+	--claro:#caf0f8;
+	--oscuro:#023e8a;
+}
+/*======================*/
+nav{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	padding:18px 8%;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	z-index:999;
+	transition:.4s;
+	background:rgba(255,255,255,.2);
+	backdrop-filter:blur(12px);
+}
+nav ul{
+	display:flex;
+	list-style:none;
+	gap:35px;
+}
+nav a{
+	text-decoration:none;
+	color:black;
+	font-weight:500;
+	transition:.3s;
+}
+nav a:hover{
+	color:#0077b6;
+}
+/* Modo oscuro */
+.oscuro nav ul li a{
+    color:white;
+}
+.oscuro nav ul li a:hover{
+    color:blue;
+}
+.hero{
+	height:100vh;
+	background:
+	linear-gradient(
+		135deg,
+		#023e8a,
+		#0077b6,
+		#0096c7
+	);
+	url("https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=1600&q=80");
+	background-size:cover;
+	background-position:center;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	text-align:center;
+	padding:20px;
+}
+.hero h1{
+	font-family:"Arial";
+	font-size:5rem;
+	color:white;
+	animation:subir 1.5s;
+}
+.hero p{
+	color:white;
+	font-size:1.2rem;
+	margin:20px 0;
+	animation:subir 2s;
+}
 
-			50%{
-				transform: translateY(20%);
-				opacity:1;
-			}
+.botones{
+	display:flex;
+	justify-content:center;
+	gap:20px;
+	flex-wrap:wrap;
+}
+.btn{
+	padding:16px 34px;
+	border-radius:40px;
+	text-decoration:none;
+	transition:.3s;
+	font-weight:bold;
+}
+.btn1{
+	background:#0077b6;
+	color:white;
+}
+.btn2{
+	background:white;
+	color:#0077b6;
+}
+.btn:hover{
+	transform:translateY(-4px);
+	box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+section{
+	padding:90px 8%;
+}
+.titulo{
+	text-align:center;
+	font-size:3rem;
+	font-family:"Arial";
+	margin-bottom:50px;
+	color:#0077b6;
+}
+/*======================*/
+.categorias{
+	display:grid;
+	grid-template-columns:
+	repeat(auto-fit,minmax(220px,1fr));
+	gap:30px;
+}
+.categoria{
+	background:white;
+	padding:40px;
+	border-radius:20px;
+	text-align:center;
+	box-shadow:0 10px 30px rgba(0,0,0,.08);
+	transition:.4s;
+}
+.categoria:hover{
+	transform:translateY(-10px);
+}
+.categoria i{
+	font-size:55px;
+	color:#0077b6;
+	margin-bottom:20px;
+}
+.categoria h3{
+	margin-bottom:15px;
+}
+footer{
+	background:#023e8a;
+	color:white;
+}
+@keyframes subir{
+	from{
+		opacity:0;
+		transform:translateY(40px);
+	}
+	to{
+		opacity:1;
+		transform:translateY(0);
+	}
+}
+/*=========================*/
+.barra-superior{
+	display:flex;
+	justify-content:center;
+	gap:20px;
+	margin-bottom:40px;
+	flex-wrap:wrap;
+}
+.barra-superior input,
+.barra-superior select{
+	padding:14px;
+	border-radius:30px;
+	border:none;
+	box-shadow:0 5px 15px rgba(0,0,0,.1);
+	min-width:250px;
+}
+.productos{
+	display:grid;
+	grid-template-columns:
+	repeat(auto-fit,minmax(260px,1fr));
+	gap:30px;
+}
+.producto{
+	background:rgba(255,255,255,.92);
+	backdrop-filter:blur(12px);
+	border-radius:22px;
+	overflow:hidden;
+	box-shadow:
+	0 20px 40px rgba(0,0,0,.15);
+	transition:.35s;
+	border:1px solid rgba(255,255,255,.45);
+}
+.producto:hover{
+	transform:
+	translateY(-10px);
+	box-shadow:
+	0 30px 50px rgba(0,0,0,.22);
+}
+.producto img{
+	width:100%;
+	height:240px;
+	object-fit:cover;
+}
+.producto h3{
+	padding:15px;
+}
+.producto p{
+	padding:0 15px;
+}
+.precio{
+	font-size:22px;
+	color:#0077b6;
+	font-weight:bold;
+	padding:15px;
+}
+.acciones{
+	display:flex;
+	gap:10px;
+	padding:15px;
+}
+.acciones button{
+	flex:1;
+	padding:12px;
+	border:none;
+	border-radius:30px;
+	cursor:pointer;
+	font-weight:bold;
+}
+.agregar{
+	background:#0077b6;
+	color:white;
+}
+.favorito{
+	background:#ffe4ec;
+}
+#botonCarrito{
+	position:fixed;
+	right:25px;
+	bottom:25px;
+	width:65px;
+	height:65px;
+	border-radius:50%;
+	background:#0077b6;
+	color:white;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:28px;
+	cursor:pointer;
+	z-index:999;
+}
+#cantidad{
+	position:absolute;
+	top:-5px;
+	right:-5px;
+	background:red;
+	color:white;
+	width:24px;
+	height:24px;
+	border-radius:50%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:12px;
+}
+#carrito{
+	position:fixed;
+	top:0;
+	right:-420px;
+	width:380px;
+	height:100%;
+	background:white;
+	box-shadow:-5px 0 20px rgba(0,0,0,.2);
+	padding:25px;
+	transition:.5s;
+	overflow:auto;
+	z-index:1000;
+}
+#carrito.abierto{
+	right:0;
+}
+.comprar{
+	width:100%;
+	padding:15px;
+	margin-top:20px;
+	border:none;
+	border-radius:30px;
+	background:#0077b6;
+	color:white;
+	font-size:18px;
+	cursor:pointer;
+}
+.promo{
+	background:linear-gradient(135deg,#0077b6,#0096c7);
+	color:white;
+	padding:60px;
+	border-radius:25px;
+	text-align:center;
+}
+.promo h2{
+	font-size:3rem;
+	margin-bottom:20px;
+	font-family:"Arial";
+}
+.galeria{
+	display:grid;
+	grid-template-columns:
+	repeat(auto-fit,minmax(250px,1fr));
+	gap:20px;
+}
+.galeria img{
+	width:100%;
+	height:250px;
+	object-fit:cover;
+	border-radius:20px;
+	cursor:pointer;
+	transition:.4s;
+}
+.galeria img:hover{
+	transform:scale(1.05);
+}
+#lightbox{
+	position:fixed;
+	inset:0;
+	background:rgba(0,0,0,.9);
+	display:none;
+	justify-content:center;
+	align-items:center;
+	z-index:5000;
+}
+#lightbox img{
+	max-width:90%;
+	max-height:90%;
+	border-radius:20px;
+}
+#cerrar{
+	position:absolute;
+	top:30px;
+	right:40px;
+	font-size:40px;
+	color:white;
+	cursor:pointer;
+}
+.estadisticas{
+	display:grid;
+	grid-template-columns:
+	repeat(auto-fit,minmax(200px,1fr));
+	gap:30px;
+	text-align:center;
+}
+.estadisticas h2{
+	font-size:4rem;
+	color:#0077b6;
+}
+.testimonios{
+	display:grid;
+	grid-template-columns:
+	repeat(auto-fit,minmax(280px,1fr));
+	gap:25px;
+}
+.testimonio{
+	background:white;
+	padding:30px;
+	border-radius:20px;
+	box-shadow:0 10px 25px rgba(0,0,0,.08);
+	transition:.3s;
+}
+.testimonio:hover{
+	transform:translateY(-8px);
+}
+/*==========================
+MODO OSCURO
+==========================*/
+#modoOscuro{
+	position:fixed;
+	left:20px;
+	bottom:25px;
+	width:60px;
+	height:60px;
+	border:none;
+	border-radius:50%;
+	background:#0077b6;
+	color:white;
+	font-size:22px;
+	cursor:pointer;
+	z-index:3000;
+	box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+#modoOscuro:hover {
+    transform: scale(1.6);
+    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+#subir{
+	position:fixed;
+	right:100px;
+	bottom:25px;
+	width:60px;
+	height:60px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:#444;
+	color:white;
+	border-radius:50%;
+	text-decoration:none;
+	font-size:24px;
+	opacity:0;
+	pointer-events:none;
+	transition:.4s;
+	z-index:3000;
+}
+#subir.visible{
+	opacity:1;
+	pointer-events:auto;
+}
+#subir:hover {
+    transform: scale(1.6);
+    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+body.oscuro{
+	background:#161616;
+	color:#efefef;
+}
+body.oscuro nav{
+	background:#222;
+}
+body.oscuro .producto,
+body.oscuro .categoria,
+body.oscuro .testimonio,
+body.oscuro #carrito{
+	background:#262626;
+	color:white;
+}
+body.oscuro footer{
+	background:#111;
+}
+.favorito.activo{
+	background:#ff4d6d;
+	color:white;
+	transform:scale(1.05);
+}
+.etiqueta{
+	position:absolute;
+	top:15px;
+	left:15px;
+	padding:6px 12px;
+	border-radius:20px;
+	font-size:12px;
+	font-weight:bold;
+	color:white;
+}
+.nuevo{
+	background:#ff4081;
+}
+.destacado{
+	background:#0077b6;
+	top:55px;
+}
+.stock{
+	padding:0 15px;
+	font-size:14px;
+	color:#666;
+	margin-bottom:10px;
+}
+.imagenProducto{
+	overflow:hidden;
+}
+.imagenProducto img{
+	transition:.5s;
+}
+.producto:hover .imagenProducto img{
+	transform:scale(1.08);
+}
+.estrellas{
+	color:#ffb400;
+	font-size:20px;
+	padding:15px 15px 0;
+}
+.precios{
+	padding:10px 15px;
+	display:flex;
+	align-items:center;
+	gap:15px;
+}
+.precioAnterior{
+	text-decoration:line-through;
+	color:#999;
+	font-size:15px;
+}
+.precioActual{
+	font-size:28px;
+	font-weight:bold;
+	color:#0077b6;
+}
+.descuento{
+	background:#d62828;
+	left:auto;
+	right:15px;
+}
+.comprar{
+	background:#ff9800;
+	color:white;
+}
+.pocoStock{
+	color:#d62828;
+	font-weight:bold;
+}
+.logo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+	object-fit:contain;
+    border: 3px solid #90e0ef;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+    transition:	transform .3s ease, box-shadow .3s ease;
+	background:#7db6e8;
+}
+.logo:hover img{
+    transform: scale(1.6);
+    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+.logo span{
+    letter-spacing: 1px;
+	font-family: "Stencil", "Arial Black", sans-serif;
+	font-size: clamp(18px, 3vw, 32px);
+}
+.burbujas{
+	position:absolute;
+	inset:0;
+	overflow:hidden;
+	pointer-events:none;
+}
+.burbujas span{
+	position:absolute;
+	bottom:-100px;
+	width:20px;
+	height:20px;
+	background:rgba(255,255,255,.25);
+	border-radius:50%;
+	animation:subir 18s linear infinite;
+}
+.burbujas span:nth-child(1){left:8%;animation-duration:16s;}
+.burbujas span:nth-child(2){left:22%;width:35px;height:35px;}
+.burbujas span:nth-child(3){left:38%;animation-duration:22s;}
+.burbujas span:nth-child(4){left:52%;width:18px;height:18px;}
+.burbujas span:nth-child(5){left:68%;animation-duration:17s;}
+.burbujas span:nth-child(6){left:82%;width:30px;height:30px;}
+.burbujas span:nth-child(7){left:92%;animation-duration:20s;}
+@keyframes subir{
+	0%{
+		transform:translateY(0) scale(.4);
+		opacity:0;
+	}
+	20%{
+		opacity:.6;
+	}
+	100%{
+		transform:translateY(-110vh) scale(1.3);
+		opacity:0;
+	}
+}
+.btn,
+.agregar,
+.comprar{
+	background:
+	linear-gradient(
+		135deg,
+		#0096c7,
+		#0077b6
+	);
+}
+.btn:hover,
+.agregar:hover,
+.comprar:hover{
+	transform:translateY(-3px);
+	box-shadow:0 10px 25px rgba(0,119,182,.35);
+}
+h1,h2,h3{
+	font-family:Arial, sans-serif;
+	letter-spacing:.5px;
+}
+#menuMovil {
+    display: none;
+}
+/*======================*/
+@media(max-width:768px){
+	.hero h1{
+		font-size:3rem;
+	}
+	@media (max-width: 768px) {
 
-			70%{
-				transform: translateY(-10%);
-			}
+    nav {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 60px;
+        padding: 8px 12px;
+        box-sizing: border-box;
+        z-index: 5000;
+    }
 
-			85%{
-				transform: translateY(5%);
-			}
+    /* BOTÓN HAMBURGUESA */
+    #menuMovil {
+        display: block !important;
+        flex: 0 0 45px;
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 5002;
+    }
 
-			100%{
-				transform: translateY(0);
-			}
-		}
-		@keyframes animacion_titulo {
-			0%,10%,100% {
-				width: 0;
-			}
-			70%,90% {
-				width: 100%;
-			}
-		}
-		@keyframes animacion_titulo_1 {
-			from { transform: scale(1); opacity: 0;}
-			to { transform: scale(1.5); opacity: 1;}
-		}
-		@keyframes animacion_titulo_2 {
-			0%, 100% { transform: translateY(0); }
-			25% { transform: translateY(-20px); }
-			50% { transform: translateY(0); }
-			75% { transform: translateY(-20px); }
-		}
-		/* DERECHA FILA 2 */
-		.menu{
-			grid-column:2;
-			grid-row:2;
-			display:flex;
-			flex-wrap:wrap;
-			justify-content:center;
-			align-items:center;
-			gap:10px;
-			list-style: none; /* quita los puntos */
-		}
-		.menu-nav {
-			grid-row:2;
-			display:flex;
-			justify-content:center;
-			align-items:center;
-			width:100%;
-			background-color: cyan;
-			text-decoration: none; 
-		}
-		.menu li {
-			text-align: center;
-			text-decoration: none; 
-			padding: 10px;
-			color: blue;
-			border-bottom: none; /* quita la línea inferior */
-		}
-		.menu li:hover {
-			background: #05bff2;
-		}
-		.menu a {
-			text-decoration: none;
-			color: blue;
-			font-size: 18px;
-		}
-		.menu a:hover {
-			color: #05bff2;
-			background-color: blue;
-			cursor: pointer;
-		}
-		.menu-toggle {
-			font-size: 24px;
-			cursor: pointer;
-			color: white;
-			border: none;
-			background: none;
-		}
-		/*Búsqueda*/
-		.busqueda {
-			grid-row: 2;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-left: 10px;
-			height: 100%;
-			max-width: 100%;
-			height: auto;
-        }
-		.busqueda button {
-			font-size: 24px;
-			color: white;
-			background-color: #4682B4;
-			border: none;
-			padding: 10px 20px;
-			border-radius: 5px;
-			cursor: pointer;
-        }
-        .busqueda button:hover {
-			background-color: #87CEEB;
-			color: white;
-        }
-		#campo_busqueda {
-			grid-row: 2;
-			display: flex;
-			justify-content: justify;
-			display: none;
-        }
-		/*Resaltado de expresiones encontradas*/
-		.highlight {
-			background-color: yellow;
-			font-weight: bold;
-			color: red;
-		}
-		.active-highlight {
-            background-color: orange;
-            color: blue;
-			font-weight: bold;
-        }
-		/* Estilos del botón adelante coincidencias*/
-		.botonadelante {
-			position: fixed;
-			right: 20px;
-			top: 300px;
-			background-color: #007BFF;
-			color: white;
-			border: none;
-			border-radius: 50%;
-			width: 50px;
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none; /* Ocultamos el botón inicialmente */
-			align-items: center;
-			justify-content: center;
-			z-index: 3;
-		}
-		/*.botonadelante::before {
-			content: "→"
-		}*/
-		.botonadelante:hover {
-			background-color: green;
-		}
-		/* Estilos del botón atras coincidencias*/
-		.botonatras {
-			position: fixed;
-			right: 120px;
-			top: 300px;
-			background-color: #007BFF;
-			color: white;
-			border: none;
-			border-radius: 50%;
-			width: 50px;
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none; /* Ocultamos el botón inicialmente */
-			align-items: center;
-			justify-content: center;
-			z-index: 3;
-		}
-		/*.botonatras::before {
-			content: "←";
-		}*/
-		.botonatras:hover {
-			background-color: green;
-		}
-		/* Estilos del botón total de coincidencias */
-		.botontotal {
-			position: fixed;
-			right: 20px;
-			top: 370px;
-			background-color: #007BFF;
-			color: white;
-			border: none;
-			width: 150px;
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none;  /* Ocultamos el botón inicialmente */
-			align-items: center;
-			justify-content: center;
-			z-index: 3;
-		}
-		.botontotal:hover {
-			background-color: green;
-		}
-		.contenedorencabezado{
-			position:fixed;
-			z-index:200;
-			margin-bottom: 20px;
-		}
-		/*Contenedor Grande*/
-		.contenedorgrande {
-			width: 100%;
-			height: 200vh;
-			padding: 10px 0px 0px 0px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: center;
-			z-index: 1;
-			margin-top: 20px;
-        }
-        .fila {
-			width: 100%;
-			height: 90%;
-			display: flex;
-			justify-content: space-around;
-			margin: 10px 0;
-        }
-        .caja {
-			position: relative;
-			width: 100%;
-			height: 100%;
-			background-color: white;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-			overflow: hidden;
-        }
-        .caja object {
-			width: 95%;
-			height: calc(95% - 10%);
-			border: true;
-			border: 2px solid red;
-			border-radius: 50px;
-        }
-		.caja p{
-			width: 95%;
-			height: 7%;
-			color: black;
-			background-color: white;
-			border: true;
-			border: 2px solid red;
-			overflow: auto;
-		}
-        /*Botón para abrir mapa en pestaña nueva a pantalla completa*/
-		.caja button {
-			position: absolute;
-			bottom: 20px;
-			right: 30px;
-			height: 30px;
-			weight: 70px;
-			background-color: blue;
-			color: white;
-			border: true;
-			border-radius: 3px;
-			cursor: pointer;
-			font-size: 14px;
-			z-index: 2;
-        }
-        .caja button:hover {
-			background-color: green;/*#0056b3;*/
-        }
-        /*Contenedor Chico*/
-		.contenedorchico {
-			display: flex;
-			justify-content: space-between;
-			width: 100%;
-			height: calc(100vh - 150px);
-			box-sizing: border-box;
-			padding: 10px 0px 0px 0px;
-			margin-top: 20px;
-		}
-        .contenedorchico img {
-			width: calc(80% - 2%); /* Ancho ajustado para incluir separación */
-			height: auto;
-			object-fit: contain; /* Ajusta la imagen sin deformarla */
-			background-color: white;
-			text-align: center;
-			padding: 20px;
-			border-radius: 10px;
-			border: true;
-			border: 2px solid red;
-		}
-		.contenedorchico p{
-			width: calc(25% - 2%); /* Ancho ajustado para incluir separación */
-			background-color: white;
-			color: black;
-			text-align: justify;/*center;*/
-			padding: 20px;
-			border-radius: 10px;
-			border: true;
-			border: 2px solid red;
-			overflow: auto;
-		}
-		/*Separador entre secciones*/
-        .separador{
-			width: 100%;
-			height: 10vh;
-			background-color: gray;
-        }
-		.icon {
-			font-size: 24px;
-			margin-right: 10px;
-		}
-		.text {
-			white-space: nowrap;
-			opacity: 0;
-			transition: opacity 0.3s ease;
-		}
-		/*Botón flotante Volver al Inicio*/
-		.botonvolverinicio {
-			position: fixed;
-			z-index: 2;
-			right: 20px;
-			top: 150px;
-			background-color: #007BFF;
-			color: white;
-			border: none;
-			border-radius: 50%;
-			width: 50px;
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			display: none; /* Ocultamos el botón inicialmente */
-			align-items: center;
-			justify-content: center;
-		}
-		.botonvolverinicio:hover {
-			background-color: green;
-		}
-		/*Pie de página*/
-		footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-			position: fixed;
-			bottom: 0;
-			width: 100%;
-			height: 5%;
-			/*z-index: 9999;*/
-        }
-        .columna-izquierda {
-            flex: 20; /* Columna más ancha */
-            text-align: left; /* A la izquierda */
-        }
-        .columna-derecha {
-            flex: 1; /* Columna más estrecha */
-            text-align: right; /* Alineación a la derecha */
-        }
-        .boton-con-icono {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            /*padding: 10px 20px;*/
-			height: auto;
-			/*width:20%;*/
-            font-size: 16px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .boton-con-icono i {
-            margin-right: 8px; /* Espacio entre el texto y el icono */
-        }
-        .boton-con-icono:hover {
-            background-color: #0056b3;
-        }
-		/*Modo Deshabilitado Elementos*/
-		.disabled {
-			pointer-events: none; /* Evita que se pueda interactuar */
-			opacity: 0.5; /* Visualmente deshabilitado */
-        }
-		/*Deshabilitar el scroll*/
-		.no-scroll {
-			overflow: hidden;
-			height: 100%; /* Evita el scroll vertical */
-		}
-        .search-button {
-			background-color: #007bff;
-			border: none;
-			padding: 10px;
-			border-radius: 50%;
-			cursor: pointer;
-			color: white;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 16px;
-			width: 40px;
-			height: 40px;
-			padding: 0;
-        }
-        .search-button:hover {
-			background-color: #0056b3;
-        }
-		.letranegrita {
-			font-weight: bold;
-		}
-		/*Botón de descarga*/
-		.btncolores {
-			margin:20px 20px 20px 35%;
-			padding: 15px 40px;
-			border: none;
-			outline: none;
-			color: #FFF;
-			cursor: pointer;
-			position: relative;
-			z-index: 0;
-			border-radius: 12px;
-		}
-		.btncolores::after {
-			content: "";
-			z-index: -1;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			background-color: blue;
-			left: 0;
-			top: 0;
-			border-radius: 10px;
-		}
-		/* glow */
-		.btncolores::before {
-			content: "";
-			background: linear-gradient(
-				45deg,
-				#FF0000, #FF7300, #FFFB00, #48FF00,
-				#00FFD5, #002BFF, #FF00C8, #FF0000
-			);
-			position: absolute;
-			top: -12px;
-			left: -12px;
-			background-size: 600%;
-			z-index: -1;
-			width: calc(100% + 24px);
-			height: calc(100% + 24px);
-			filter: blur(8px);
-			border-radius: 10px;
+    /* LOGO */
+    .logo {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+        z-index: 5001;
+    }
 
-			animation: glowing 20s linear infinite;
-			opacity: 1;
-		}
-		@keyframes glowing {
-			0% {background-position: 0 0;}
-			50% {background-position: 400% 0;}
-			100% {background-position: 0 0;}
-		}
-		.btncolores:active:after {
-			background: transparent;
-		}
-		.btncolores:active {
-			color: #000;
-			font-weight: bold;
-		}
-		#intro {
-			margin-top: 5%;
-		}
-		
-		/* MOVIL */
-		@media(max-width:767px){
-			.tabla-encabezado{
-				grid-template-columns:15% 85%;
-				grid-template-rows:7vh 7vh;
-			}
-			.titulo{
-				font-size:18px;
-			}
-			.menu{
-				font-size:13px;
-				font-weight: bold;
-				gap:8px;
-			}
-			.menu a{
-				font-size:11px;
-				font-weight: bold;
-				/*gap:5px;*/
-			}
-			.menu li{
-				padding:5px;
-			}
-			.columna-izquierda{
-				flex:12;
-			}
-			.columna-derecha{
-				flex:8;
-				display:flex;
-				justify-content:flex-end;
-				align-items:center;
-			}
-			.boton-con-icono{
-				width:100%;
-				height:40px;
-				max-width:none;
-				font-size:14px;
-			}
-			.texto {
-				font-size: 14px;
-				padding: 6px;
-			}
-			.contenedorchico{
-				flex-direction: column;
-				height: auto;
-				gap: 15px;
-			}
-			.contenedorchico img,
-			.contenedorchico p{
-				width: 100%;
-			}
-			.menu,
-			.menu *,
-			.busqueda,
-			.busqueda *{
-				pointer-events:auto;
-			}
-			footer,
-			footer *{
-				pointer-events:auto;
-			}
-		}
-		/* Estilos para cuando el dispositivo móvil está en VERTICAL */
-		@media (max-width: 767px) and (orientation: portrait) {
-			/*.swiper {*/
-			/*	height: 15vh;*/
-			/*	width: 25vh;*/
-			/*}*/
-		}
-		
-		/* Estilos para cuando el dispositivo móvil está en HORIZONTAL */
-		@media (max-width: 767px) and (orientation: landscape) {
-			.swiper {
-				height: 30vh;
-				width: 50vh;
-			}
-		}
+    .logo img {
+        width: 42px;
+        height: 42px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
 
-    </style>
-	<!--Icono para la pestaña del navegador-->
-	<link rel="shortcut icon" href="Perfil.ico" type="image/x-icon"/>
+    .logo span {
+        font-family: "Stencil", "Arial Black", sans-serif;
+        font-size: clamp(16px, 4vw, 24px);
+        letter-spacing: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* MODO OSCURO */
+    #modoOscuro {
+        display: block !important;
+        flex: 0 0 45px;
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 5002;
+    }
+
+    /* FLECHA SUBIR */
+    #subir {
+        /*display: none;*/
+    }
+
+    /* MENÚ OCULTO */
+    nav ul#menuPrincipal {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
+        box-sizing: border-box;
+        z-index: 5001;
+    }
+
+    /* MENÚ ABIERTO */
+    nav ul#menuPrincipal.mostrar {
+        display: block;
+    }
+
+    nav ul#menuPrincipal li {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav ul#menuPrincipal li a {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        box-sizing: border-box;
+    }
+}
+    .productos{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+    .producto img{
+        height:140px;
+    }
+    .producto h3{
+        padding:8px;
+        font-size:14px;
+    }
+    .producto p{
+        padding:0 8px;
+        font-size:12px;
+    }
+    .acciones{
+        flex-direction:column;
+        padding:8px;
+        gap:6px;
+    }
+    .acciones button{
+        padding:8px;
+        font-size:12px;
+    }
+	#carrito{
+        width:calc(100% - 50px);
+        right:-100%;
+        padding:20px;
+    }
+    #carrito.abierto{
+        right:0;
+    }
+    #botonCarrito{
+        right:15px;
+        bottom:15px;
+        width:55px;
+        height:55px;
+        font-size:24px;
+    }
+}
+@media (hover:none){
+    #modoOscuro:hover,
+    .logo:hover img{
+        transform:none;
+    }
+}
+</style>
+<!--Icono para la pestaña del navegador-->
+<link rel="shortcut icon" href="img/Perfil.ico" type="image/x-icon"/>
 </head>
 <body>
-<!--Contenedor general para realizar las búsquedas de coincidencias-->
-<div id="contenidogeneral">
-	<div class="contenedorencabezado" id="contenedorencabezado">
-		<div class="tabla-encabezado">
-			<div class="imagen-encabezado">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<!--<img src="Perfil.jpg" alt="Foto de Mauricio Godoy">-->
-				<img src="LogoEmpresarial.png" alt="Logo">
-			</div>
-			<div data-text="Sitio de presentación laboral de Mauricio Godoy" class="titulo"></div>
-			<div class="menu-nav">
-					<ul class="menu" id="menu">
-						<li><a onclick="navigateTo(event, 'Mapas')">Mapas</a></li>
-						<li><a onclick="navigateTo(event, 'Python')">Python</a></li>
-						<li><a onclick="navigateTo(event, 'Excel')">Excel</a></li>
-						<li><a onclick="navigateTo(event, 'Encuestas')">Encuestas</a></li>
-						<li><a onclick="navigateTo(event, 'Contacto')">Contacto</a></li>
-					</ul>
-					<div class="busqueda">
-						<button class="search-button" id="botonbusqueda">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-					<div id="campo_busqueda" class="campo_busqueda">
-						<input type="text" id="searchInput" autocomplete="off">
-						<label>¿Qué buscás?...</label>
-					</div>
-			</div>
+<!--<nav>
+	<button id="modoOscuro">
+		<i class="fa-solid fa-moon"></i>
+	</button>
+	<a href="#" id="subir">
+		<i class="fa-solid fa-arrow-up"></i>
+	</a>
+	<div class="logo">
+		<img src="img/Paraiso.jpg" alt="Pez Paraíso">
+		<span>La Mojarrita Cordobesa</span>
+	</div>
+	<ul>
+		<li><a href="#">Inicio</a></li>
+		<li><a href="#">Catálogo</a></li>
+		<li><a href="#">Eventos</a></li>
+		<li><a href="#">Nosotros</a></li>
+		<li><a href="#">Contacto</a></li>
+	</ul>
+</nav>-->
+<nav>
+    <button id="menuMovil">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <button id="modoOscuro">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <a href="#" id="subir">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+    <div class="logo">
+        <img src="img/Paraiso.jpg" alt="Pez Paraíso">
+        <span>La Mojarrita Cordobesa</span>
+    </div>
+    <ul id="menuPrincipal">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Catálogo</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+    </ul>
+</nav>
+<header class="hero">
+<div class="burbujas">
+<span></span
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+	<h1>Todo para tu Acuario</h1>
+	<p> Peces tropicales, de agua fría, plantas acuáticas, peceras, filtros, alimentos y accesorios de las mejores marcas.</p>
+	<br></br>
+	<a href="#catalogo" class="btn btn1">Ver Catálogo</a>
+</div>
+</header>
+<section>
+	<h2 class="titulo">Nuestras Categorías</h2>
+	<div class="categorias">
+		<div class="categoria">
+			<i class="fa-solid fa-seedling"></i>
+			<i class="fa-solid fa-fish"></i>
+			<h3>Peceras armadas</h3>
+			<p>Alegrá tu hogar y dale un toque distinto con una pecera a tu gusto y medida.</p>
+		</div>
+		<div class="categoria">
+			<i class="fa-solid fa-gift"></i>
+			<h3>Regalos</h3>
+			<p>Detalles únicos para sorprender con mascotas acuáticas.</p>
+		</div>
+		<div class="categoria">
+			<i class="fa-solid fa-filter"></i>
+			<h3>Equipos</h3>
+			<p>Peceras, filtros, calefactores, aireadores y mucho más.</p>
+		</div>
+		<div class="categoria">
+			<i class="fa-solid fa-water"></i>
+			<h3>Estanques</h3>
+			<p>También podemos diseñarte un estanque para tu jardín.</p>
 		</div>
 	</div>
-	
-	<!--Sección para el carrusel-->
-	<div id="intro">
-		<div class="swiper mySwiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<img src="Mapas.jpg" alt="Imagen 1" onclick="navigateTo(event, 'Mapas')">
-					<div class="texto">Generación y publicación de <b>mapas online</b>.</div>
-					<!--Un mapa es una representación gráfica a escala real de lo que hay sobre la superficie terrestre. Con la ayuda de herramientas de cartografía de uso libre y gratuito, es posible crear editar y hasta publicar en internet mapas de distintas temáticas.-->
-				</div>
-				<div class="swiper-slide">
-					<img src="Python.jpg" alt="Imagen 2" onclick="navigateTo(event, 'Python')">
-					<div class="texto">Creación de sistemas informáticos en <b>Python</b>.</div>
-				</div>
-				<div class="swiper-slide">
-					<img src="Excel.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Excel')">
-					<div class="texto">Creación de procesos automatizados en <b>Excel</b>.</div>
-				</div>
-				<div class="swiper-slide">
-					<img src="Encuesta.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Encuestas')">
-					<div class="texto">Creación y sincronización de <b>Encuestas</b> para la toma y procesamiento de datos.</div>
-				</div>
-				<div class="swiper-slide">
-					<img src="Contacto.jpg" alt="Imagen 3" onclick="navigateTo(event, 'Contacto')">
-					<div class="texto">Cómo <b>contactarme</b>...</div>
-				</div>
-			</div>
-			<div class="swiper-pagination"></div>
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-		</div>
-	</div>
-	
-	<!--Botón flotante volver al Inicio-->
-	<button id="botonFlotante" class="botonvolverinicio" title="Subir al Inicio">↑</button>
-	
-	<!--Controles de las coincidencias-->
-	<button id="prev" class="botonatras" title="Coincidencia Anterior"><i class="fa fa-arrow-left"></i></button>
-	<button id="next" class="botonadelante" title="Siguiente Coincidencia"><i class="fa-solid fa-arrow-right"></i></button>
-	<button id="status" class="botontotal"  title="Coincidencias Encontradas"></button>
-	
-	<!--Sección de mapas-->
-	<div id="Mapas" class="contenedorgrande" data-aos="zoom-in-down">
-		<div class="fila">
-			<div class="caja">
-				<object type="text/html" data="https://cmauriciog.github.io/intaeeamzapublico/"></object>
-				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamzapublico/')">Ampliar</button>
-				<p class="busca">Este mapa permite hacer búsquedas por determinados criterios o valores dentro de un campo bajo cultivo. Resalta los lugares donde se encuentran los valores indicados y arroja un cuadro estadístico. También te traza rutas para llegar a cierto destino y se puede cambiar el mapa de fondo.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-</p>
-			</div>
-			<div class="caja busca">
-				<object type="text/html" data="https://cmauriciog.github.io/MapaEnriquecido/"></object>
-				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/MapaEnriquecido/')">Ampliar</button>
-				<p class="busca">Este visor web te ayuda a conocer algunas de las herramientas más comunes para observar, procesar y analizar mapas en línea. Podés visualizar marcadores que ya tengás georreferenciados, filtrarlos de acuerdo a alguno de sus atributos, trazar una ruta entre dos puntos y obtener sus detalles, medir la superficie y el perímetro de un área, copiar al portapales las coordenadas de cierto lugar, etc.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-			</div>
-		</div>
-		<div class="fila">
-			<div class="caja">
-				<object type="text/html" data="https://cmauriciog.github.io/buscadormundial/"></object>
-				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/buscadormundial/')">Ampliar</button>
-				<p class="busca">Este mapa trabaja con la división política a nivel mundial. Solo debés escribir el nombre de la zona deseada y te arrojará un lista de coincidencias a nivel departamental, provincial y nacional. Seleccioná la que desees y te hará un zoom sobre la misma, marcando sus límites.<br>Podés interactuar con él usando las herramientas disponibles a través de sus diferentes botones o, si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-			</div>
-			<div class="caja">
-				<object type="text/html" data="https://cmauriciog.github.io/intaeeamza/"></object>
-				<button class="boton-pagina" onclick="AmpliarMapa('https://cmauriciog.github.io/intaeeamza/')">Ampliar</button>
-				<p class="busca">Mapa en desarrollo. Si querés verlo y trabajarlo a pantalla completa, clickeá sobre el botón << Ampliar >>. En caso de estar disponible, te mostrará un botón de información con mayores detalles aún.-.</p>
-			</div>
-		</div>
-	</div>
+</section>
 
-	<div class="separador"></div>
-
-	<!--Sección de Python-->
-	<div id="Python" class="contenedorchico" data-aos="zoom-in-down">
-		<img src="Python.jpg" />
-		<p class="busca"><span class="letranegrita busca">Python</span><br><br>
-		Python es un lenguaje qué código abierto y gratuito muy versátil para aplicar en distintas disciplinas.<br><br>Estas y otras características lo han convertido lenguaje de amplio uso.<br><br>
-		Además, cuenta con una nutrida comunidad de programadores que están enriqueciendo en forma constante y sin pausa sus complementos o herramientas aplicables a distintas necesidades del usuario.<br><br>
-		En esta imagen se puede apreciar un sistema de gestión comercial que es capaz de añadir, modificar, eliminar registros y solicitar distintas consultas a una base de datos.</p>
+<!--==========================
+CATÁLOGO
+===========================-->
+<section id="catalogo">
+	<h2 class="titulo">Productos Destacados</h2>
+	<div class="barra-superior">
+		<input
+		type="text"
+		id="buscar"
+		placeholder="🔍 Buscar en la tienda...">
+		<select id="filtro">
+			<option value="todos">Todas</option>
+			<option value="Peces Tropicales">Peces Tropicales</option>
+			<option value="Peces de Agua Fría">Peces de Agua Fría</option>
+			<option value="Plantas Acuáticas">Plantas Acuáticas</option>
+			<option value="Equipamiento">Equipamiento</option>
+			<option value="Alimentos">Alimentos</option>
+		</select>
 	</div>
-	
-	<div class="separador"></div>
-
-	<!--Sección de Excel-->
-	<div id="Excel" class="contenedorchico" data-aos="zoom-in-down">
-		<img src="Excel.jpg" />
-		<p class="busca"><span class="letranegrita busca">Visual Basic Aplicado a Excel</span><br><br>
-		Si bien las planillas de cálculo son usadas para su principal característica que es realizar diferentes estimaciones aritméticas y estadísticas; existe la posibilidad de sumarle herramientas avanzadas para automatizar algunas de sus prestaciones.<br><br>
-		Por ejemplo, en el caso de Excel, se puede emplear Visual Basic para lograr un archivo que ayude a ordenar y programar la economía doméstica y de un pequeño negocio.<br><br>
-		En esta imagen se presenta una planilla preparada para registrar, modificar y consultar los movimientos de ingresos, gastos e inversiones de una familia, incluyendo alertas o recordatorios y gráficos.</p>
+	<div class="productos" id="productos">
 	</div>
+</section>
 
-	<div class="separador"></div>
-
-	<!--Sección de Encuestas-->
-	<div id="Encuestas" class="contenedorchico" data-aos="zoom-in-down">
-		<img src="Encuesta.jpg" />
-		<p class="busca"><span class="letranegrita busca">Encuestas Digitales</span><br><br>
-		Existen muchos trabajos que exigen que la información sea tomada en el campo para luego consolidarla, analizarla y graficarla.<br><br>
-		Para eso, se necesita almacenarla en una base de datos que puede ser pequeña, mediana o muy amplia.<br><br>
-		El desafío suele ser muchas veces, la falta de acceso a internet en el lugar de la toma de los datos para poder sincronizar dispositivos móviles con equipos informáticos de oficina que logren cubrir estas necesidades y el diseño de los formularios correspondientes para que la recolección de la información sea simple, completa y lógica.<br><br>
-		Existen aplicaciones móviles para desarrollar un formulario capaz de tomar información en formato de texto, fechas con un formato predefinido, fotos, videos, coordenadas geográficas, etcétera y que más tarde comparten esos registros con servicios en la nube en formatos accesibles para otros equipos con el poder de procesamiento suficiente como para realizar los análisis correspondientes.<br><br>
-		En esta imagen se puede observar una interfaz de la aplicación móvil y el registro resultante.</p>
-	</div>
-	
-	<div class="separador"></div>
-
-	<!--Sección de Contacto-->
-	<div id="Contacto" class="contenedorchico" data-aos="zoom-in-down">
-		<img src="Contacto.jpg" />
-		<p class="busca"><span class="letranegrita busca">Contacto</span><br><br>
-		A continuación encontrarás los medios para contactarme...<br><br>
-		<!--Sección para descargas-->
-		<button id="descargar cv" class="btncolores" onclick="descargarArchivo()">Descargar CV</button>
-		<br>
-		Mi mail:
-		<br>
-		<button id="enviarmail" class="btncolores" onclick="enviarMail()">Enviarme un mail</button></p>
-	</div>
+<!--==========================
+BOTÓN CARRITO
+===========================-->
+<div id="botonCarrito">🛒
+	<span id="cantidad">0</span>
 </div>
 
-<!--Pie de página-->
+<!--==========================
+CARRITO
+===========================-->
+<div id="carrito">
+	<h2>Mi Compra</h2>
+	<div id="listaCarrito"></div>
+	<h3 id="total">Total $0</h3>
+	<!--<button class="comprar" onclick=function(){panelCarrito.classList.toggle("abierto");}>Finalizar Compra</button>-->
+	<button class="comprar" onclick="panelCarrito.classList.remove('abierto');">Finalizar Compra</button>
+</div>
+
+<!--====================================
+PROMOCIONES
+=====================================-->
+<section id="promo">
+	<div class="promo">
+		<h2>Oferta de la Semana</h2>
+		<p>20% de descuento en todos los peces tropicales.</p>
+		<br></br>
+		<a href="#" class="btn btn1">Comprar Ahora</a>
+	</div>
+</section>
+
+<!--====================================
+GALERÍA
+=====================================-->
+<section>
+	<h2 class="titulo">Nuestra Galería</h2>
+	<div class="galeria">
+		<img src="img/Pecera1.jpg">
+		<img src="img/Estanque1.jpg">
+	</div>
+</section>
+<div id="lightbox">
+	<span id="cerrar">✖</span>
+	<img id="imagenGrande">
+</div>
+
+<!--====================================
+ESTADÍSTICAS
+=====================================-->
+<section>
+	<div class="estadisticas">
+		<div><h2 id="c1">0</h2>
+			<p>Clientes felices</p>
+		</div>
+		<div><h2 id="c2">0</h2>
+			<p>Peces vendidos</p>
+		</div>
+		<div><h2 id="c3">0</h2>
+			<p>Estanques construidos</p>
+		</div>
+	</div>
+</section>
+
+<!--====================================
+TESTIMONIOS
+=====================================-->
+<section>
+	<h2 class="titulo">Lo que dicen nuestros clientes...</h2>
+	<div class="testimonios">
+		<div class="testimonio">⭐⭐⭐⭐⭐<p>"Nunca pensé que había tanta variedad de peces...!!!."</p>
+			<strong>María</strong>
+		</div>
+		<div class="testimonio">⭐⭐⭐⭐⭐<p>"Excelente atención y asesoramiento. Unos capos."</p>
+			<strong>Jorge</strong>
+		</div>
+		<div class="testimonio">⭐⭐⭐⭐⭐<p>"Volveré a comprar sin dudas."</p>
+			<strong>Lucía</strong>
+		</div>
+	</div>
+</section>
 <footer>
-	<div class="columna-izquierda">
-		<p>&copy; 2026 Mauricio Godoy</p>
-	</div>
-	<div class="columna-derecha">
-		<button class="boton-con-icono" id="colorModo">
-			<i id="iconoModo" class="fas fa-moon" title="Cambiar a fondo oscuro"></i>
-			<span id="labelModo" style="font-size:12px" title="Cambiar a fondo oscuro">Fondo Negro</span>
-		</button>
-	</div>
+	<p>Hecho con ❤️ para regalar emociones a grandes y chicos.-</p>
 </footer>
 <script>
-	//Variables globales
-	var cuerpo = document.body;
-	var contenedor_separador=document.querySelectorAll(".separador");
-	var contenedor_grande=document.querySelectorAll(".contenedorgrande");
-	var contenedor_caja=document.querySelectorAll(".caja");
-	var contenedor_chico=document.querySelectorAll(".contenedorchico");
-	var boton_modo = document.getElementById("colorModo");
-	var icono_modo = document.getElementById("iconoModo");
-	var label_modo = document.getElementById("labelModo");
-	var boton_busqueda=document.getElementById("botonbusqueda");
-	const campo_busqueda=document.getElementById("campo_busqueda");
-	const texto_busqueda=document.getElementById("searchInput");
-	var indicecolor = 0;
-	var prevCoincidencia = document.getElementById("prev");
-	var proxCoincidencia = document.getElementById("next");
-	const cantidadCoincidencias = document.getElementById("status");
-	var contenido = document.getElementById("contenidogeneral");
-	var matches = [];
-	
-	function detectarSistemaOperativo() {
-		const plataforma = navigator.platform.toLowerCase();
-		const agenteUsuario = navigator.userAgent.toLowerCase();
-		if (! plataforma.includes("win")) {
-			const fondo= document.getElementById('contenedorencabezado');
-			const elemento = document.querySelector('#menu');
-			elemento.className = "menu disabled";
-			const elemento1 = document.querySelector('#barra_lateral');
-			const elemento2 = document.querySelector('#colorModo');
-			elemento2.className = "fondo disabled";
-			const elemento3 = document.querySelector('#botonbusqueda');
-			elemento3.className = "search-button disabled";
-		};
+const listaCarrito=document.getElementById("listaCarrito");
+const totalElemento=document.getElementById("total");
+const cantidadElemento=document.getElementById("cantidad");
+const buscar=document.getElementById("buscar");
+const lightbox=document.getElementById("lightbox");
+const imagenGrande=document.getElementById("imagenGrande");
+const cerrar=document.getElementById("cerrar");
+const filtro=document.getElementById("filtro");
+const productos=[
+{
+    id:1,
+    nombre:"Betta Splendens",
+    categoria:"Peces Tropicales",
+    precio:18000,
+    precioAnterior:25000,
+    stock:12,
+    destacado:true,
+    nuevo:true,
+    descuento:28,
+    estrellas:5,
+    imagen:"img/Betta.jpg"
+},
+{
+    id:2,
+    nombre:"Pez Angel",
+    categoria:"Peces Tropicales",
+    precio:10000,
+    precioAnterior:20000,
+    stock:40,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/Angel.jpg"
+},
+{
+    id:3,
+    nombre:"Lebistes",
+    categoria:"Peces Tropicales",
+    precio:5000,
+    precioAnterior:7000,
+    stock:100,
+    destacado:true,
+    nuevo:true,
+    descuento:29,
+    estrellas:4,
+    imagen:"img/Lebistes.jpg"
+},
+{
+    id:4,
+    nombre:"Pez Espada",
+    categoria:"Peces Tropicales",
+    precio:3000,
+    precioAnterior:6000,
+    stock:12,
+    destacado:false,
+    nuevo:false,
+    descuento:50,
+    estrellas:3,
+    imagen:"img/Espada.jpg"
+},
+{
+    id:5,
+    nombre:"Neon Cardinal",
+    categoria:"Peces Tropicales",
+    precio:22000,
+    precioAnterior:25000,
+    stock:55,
+    destacado:true,
+    nuevo:true,
+    descuento:12,
+    estrellas:5,
+    imagen:"img/Neon.jpg"
+},
+{
+    id:6,
+    nombre:"Cometa",
+    categoria:"Peces de Agua Fría",
+    precio:15000,
+    precioAnterior:20000,
+    stock:35,
+    destacado:true,
+    nuevo:true,
+    descuento:15,
+    estrellas:2,
+    imagen:"img/Cometa.jpg"
+},
+{
+    id:7,
+    nombre:"Tricho",
+    categoria:"Peces Tropicales",
+    precio:18000,
+    precioAnterior:20000,
+    stock:5,
+    destacado:true,
+    nuevo:false,
+    descuento:10,
+    estrellas:4,
+    imagen:"img/Tricho.jpg"
+},
+{
+    id:8,
+    nombre:"Pez Paraiso",
+    categoria:"Peces Tropicales",
+    precio:11000,
+    precioAnterior:22000,
+    stock:20,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/Paraiso.jpg"
+},
+{
+    id:9,
+    nombre:"Monjita",
+    categoria:"Peces Tropicales",
+    precio:5000,
+    precioAnterior:5000,
+    stock:15,
+    destacado:false,
+    nuevo:true,
+    descuento:0,
+    estrellas:2,
+    imagen:"img/Monjita.jpg"
+},
+{
+    id:10,
+    nombre:"Cebrita",
+    categoria:"Peces Tropicales",
+    precio:18000,
+    precioAnterior:22000,
+    stock:50,
+    destacado:true,
+    nuevo:true,
+    descuento:18,
+    estrellas:1,
+    imagen:"img/Cebrita.jpg"
+},
+{
+    id:11,
+    nombre:"Molly",
+    categoria:"Peces Tropicales",
+    precio:2000,
+    precioAnterior:6000,
+    stock:30,
+    destacado:true,
+    nuevo:true,
+    descuento:33,
+    estrellas:4,
+    imagen:"img/Molly.jpg"
+},
+{
+    id:12,
+    nombre:"Carassius",
+    categoria:"Peces de Agua Fría",
+    precio:10000,
+    precioAnterior:20000,
+    stock:25,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:3,
+    imagen:"img/Carassius.jpg"
+},
+{
+    id:13,
+    nombre:"Cabomba",
+    categoria:"Plantas Acuáticas",
+    precio:2500,
+    precioAnterior:5000,
+    stock:60,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/Cabomba.jpg"
+},
+{
+    id:14,
+    nombre:"Echinodorus",
+    categoria:"Plantas Acuáticas",
+    precio:1000,
+    precioAnterior:2000,
+    stock:22,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/Echinodorus.jpg"
+},
+{
+    id:15,
+    nombre:"Elodea",
+    categoria:"Plantas Acuáticas",
+    precio:1500,
+    precioAnterior:3000,
+    stock:85,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:3,
+    imagen:"img/Elodea.jpg"
+},
+{
+    id:16,
+    nombre:"Helecho de Java",
+    categoria:"Plantas Acuáticas",
+    precio:3000,
+    precioAnterior:6000,
+    stock:19,
+    destacado:false,
+    nuevo:false,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/HelechoJava.jpg"
+},
+{
+    id:17,
+    nombre:"Valisneria",
+    categoria:"Plantas Acuáticas",
+    precio:2200,
+    precioAnterior:4400,
+    stock:70,
+    destacado:true,
+    nuevo:false,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/Valisneria.jpg"
+},
+{
+    id:18,
+    nombre:"Filtro de Agua Interno",
+    categoria:"Equipamiento",
+    precio:30000,
+    precioAnterior:60000,
+    stock:19,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/FiltroInterno.jpg"
+},
+{
+    id:19,
+    nombre:"Filtro de Agua Externo",
+    categoria:"Equipamiento",
+    precio:22000,
+    precioAnterior:44000,
+    stock:15,
+    destacado:true,
+    nuevo:false,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/FiltroExterno.jpg"
+},
+{
+    id:20,
+    nombre:"Alimento para Peces de Estanques",
+    categoria:"Alimentos",
+    precio:22000,
+    precioAnterior:44000,
+    stock:17,
+    destacado:true,
+    nuevo:false,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/AlimentoPellet.jpg"
+},
+{
+    id:21,
+    nombre:"Alimento para Peces Tropicales",
+    categoria:"Alimentos",
+    precio:30000,
+    precioAnterior:60000,
+    stock:33,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/ShuletTropical.jpg"
+},
+{
+    id:22,
+    nombre:"Alimento para Peces de Agua Fría",
+    categoria:"Alimentos",
+    precio:22000,
+    precioAnterior:44000,
+    stock:19,
+    destacado:true,
+    nuevo:false,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/TetraGoldfish.jpg"
+},
+{
+    id:23,
+    nombre:"Goldfish",
+    categoria:"Peces de Agua Fría",
+    precio:2200,
+    precioAnterior:4400,
+    stock:7,
+    destacado:true,
+    nuevo:false,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/Goldfish.jpg"
+},
+{
+    id:24,
+    nombre:"Peceras Completas",
+    categoria:"Equipamiento",
+    precio:30000,
+    precioAnterior:60000,
+    stock:3,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/Pecera.jpg"
+},
+{
+    id:25,
+    nombre:"Bomba de Agua para Cascadas de Estanques",
+    categoria:"Equipamiento",
+    precio:22000,
+    precioAnterior:44000,
+    stock:6,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:5,
+    imagen:"img/BombaEstanque.jpg"
+},
+{
+    id:26,
+    nombre:"Peceras Cúbicas",
+    categoria:"Equipamiento",
+    precio:3000,
+    precioAnterior:6000,
+    stock:30,
+    destacado:true,
+    nuevo:true,
+    descuento:50,
+    estrellas:4,
+    imagen:"img/PeceraCubo.jpg"
+},
+{
+    id:27,
+    nombre:"Peceras Redondas",
+    categoria:"Equipamiento",
+    precio:3000,
+    precioAnterior:9000,
+    stock:3,
+    destacado:true,
+    nuevo:true,
+    descuento:66,
+    estrellas:5,
+    imagen:"img/PeceraRedonda.jpg"
+},
+];
+const contenedor=document.getElementById("productos");
+const carrito=[];
+/*==========================
+FAVORITOS
+==========================*/
+let favoritos=JSON.parse(localStorage.getItem("favoritos")||"[]");
+function crearTarjeta(p) {
+	let estrellas="";
+	for(let i=1;i<=5;i++){
+		estrellas += i<=p.estrellas ? "★" : "☆";
 	};
-	
-	detectarSistemaOperativo();
-	
-	//Función para abrir pestaña nueva con mapa
-	function AmpliarMapa(web) {
-		window.open(web, "_blank");
-	};
-	//Funciones para el botón flotante
-	const botonFlotante = document.getElementById('botonFlotante');
+	return `
+	<div class="producto">${p.nuevo ? '<span class="etiqueta nuevo">NUEVO</span>' : ''}${p.destacado ? '<span class="etiqueta destacado">DESTACADO</span>' : ''}
+		${p.descuento>0 ?
+		`<span class="etiqueta descuento">-${p.descuento}%</span>` : ''}
+		<div class="imagenProducto">
+			<img src="${p.imagen}" alt="${p.nombre}">
+		</div>
+		<div class="contenidoProducto">
+			<div class="estrellas">
+				${estrellas}
+			</div>
+			<h3>${p.nombre}</h3>
+			<p class="categoriaTexto">${p.categoria}</p>
+			<div class="precios">
+				${p.precioAnterior ?
+				`<span class="precioAnterior">$${p.precioAnterior}</span>`
+				:''}
+				<span class="precioActual">$${p.precio}</span>
+			</div>
+			<p class="stock">${p.stock>5 ? `Stock disponible: ${p.stock}`:`<span class="pocoStock">¡Sólo quedan ${p.stock}!</span>`}</p>
+			<div class="acciones">
+				<button	class="agregar"	onclick="agregar(${p.id})">🛒 Agregar</button>
+				<button	class="comprar">⚡ Comprar</button>
+				<button class="favorito ${favoritos.includes(p.nombre)?'activo':''}" onclick="favorito('${p.nombre}',this)">❤</button>
+			</div>
+		</div>
+	</div>
+	`;
+};
 
-	// Mostrar el botón cuando se desplaza hacia abajo
-	window.addEventListener('scroll', () => {
-		if (window.scrollY > 300) { // Mostrar el botón después de 300px
-			botonFlotante.style.display = 'flex';
-		} else {
-			botonFlotante.style.display = 'none';
-		}
+function mostrar(lista){
+	contenedor.innerHTML="";
+	lista.forEach(p=>{contenedor.innerHTML+=crearTarjeta(p);
 	});
+};
 
-	// Volver al inicio al hacer clic
-	botonFlotante.addEventListener('click', () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth' // Desplazamiento suave
-		});
-	});
-	
-	//Función menú hamburguesa para página no maximizada
-	function toggleMenu() {
-		document.getElementById("menu").classList.toggle("activo");
-	};
-	
-	//Bloque cambio modo oscuro/claro/azul
-	// Lista de fondos y nombres de íconos (utilizando FontAwesome como referencia)
+mostrar(productos);
 
-	//Clic en botón Modo
-	boton_modo.addEventListener("click", cambiarColor);
+function agregar(id){
+    const item = carrito.find(p => p.id === id);
+    if(item){
+        item.cantidad++;
+    }else{
+        carrito.push({
+            id:id,
+            cantidad:1
+        });
+    }
+    actualizar();
+};
 
-	function cambiarColor() {
-		const backgrounds = [
-		{fondo: "white", letra: "black", sep:"gray", icon: "fas fa-moon", label: "Fondo Negro", titulo: "Fondo color oscuro"},
-		{fondo: "black", letra: "white", sep:"#fec44f", icon: "fas fa-droplet", label: "Fondo Azul", titulo: "Fondo color azul"},
-		{fondo: "blue", letra: "cyan", sep:"#2b8cbe", icon: "fas fa-sun", label: "Fondo Blanco", titulo: "Fondo color blanco"},
-		];
-		indicecolor = indicecolor + 1;
-		if (indicecolor >2) {
-			indicecolor= 0;
-		};
-		let colores=indicecolor % backgrounds.length;
-		const {fondo, letra, sep, icon: iconClass, label: textLabel, titulo: title} = backgrounds[colores];
-		// Cambiar el color del fondo y de la letra de cada contenedor
-		// Recorrer cada elemento y cambiar sus estilos
-		contenedor_grande.forEach(div => {
-			div.style.color = letra;  // Cambia el color del texto
-			div.style.backgroundColor = fondo;  // Cambia el color de fondo
-			// Seleccionar y cambiar estilos de los párrafos dentro del div
-            div.querySelectorAll("p").forEach(p => {
-                p.style.color = letra;
-				p.style.backgroundColor=fondo;
-            });
-		});
-		contenedor_caja.forEach(div => {
-			div.style.backgroundColor = fondo;
-		});
-		contenedor_chico.forEach(div => {
-			div.style.color = letra;
-			div.style.backgroundColor = fondo;
-            div.querySelectorAll("p").forEach(p => {
-                p.style.color = letra;
-				p.style.backgroundColor=fondo;
-            });
-            div.querySelectorAll("img").forEach(img => {
-                img.style.backgroundColor = fondo;
-            });
-		});
-		contenedor_separador.forEach(div => {
-			div.style.backgroundColor = sep;
-		});
-		icono_modo.className = iconClass;
-		label_modo.textContent = textLabel;
-		icono_modo.title=title;
-		label_modo.title=title;
-	};
-	
-	//Activar/Desactivar Búsqueda
-	botonbusqueda.addEventListener("click", function () {
-		if (campo_busqueda.style.display === "flex") {
-			// Ocultar
-			campo_busqueda.style.display = "none";
-			prevCoincidencia.style.display="none";
-			proxCoincidencia.style.display="none";
-			cantidadCoincidencias.style.display="none";
-		} else {
-			// Mostrar
-			campo_busqueda.style.display = "flex";
-			document.getElementById("searchInput").focus();
-		}
-	});
-	
-	texto_busqueda.addEventListener('input', () => {
-      if (texto_busqueda.value.trim() === '') {
-     } else {
-		cantidadCoincidencias.style.display = 'block';
-		proxCoincidencia.style.display = 'block';
-	  }
+
+
+
+//=======ESTO FUNCIONABA BIEN=======
+//function actualizar(){
+//    cantidadElemento.innerHTML = carrito.length;
+//    let html = "";
+//    let total = 0;
+//    carrito.forEach(item=>{
+//        const producto = productos.find(p => p.id === item.id);
+//        if(!producto) return;
+//        html += `<p>${producto.nombre}............$${producto.precio}</p>`;
+//        total += producto.precio * item.cantidad;
+//    });
+//    listaCarrito.innerHTML = html;
+//    totalElemento.innerHTML = "Total $" + total;
+//    localStorage.setItem(
+//        "carrito",
+//        JSON.stringify(carrito)
+//    );
+//};
+
+
+
+function actualizar(){
+    cantidadElemento.innerHTML = carrito.length;
+    let html = "";
+    let total = 0;
+    carrito.forEach(item => {
+        const producto = productos.find(p => p.id === item.id);
+        if(!producto) return;
+        const subtotal = producto.precio * item.cantidad;
+        html += `
+            <div class="itemCarrito">
+                <div>
+                    <strong>${producto.nombre}</strong>
+                    <br>
+                    Cantidad: ${item.cantidad}
+                    <br>
+                    $${subtotal}
+                </div>
+                <button 
+                    class="eliminarCarrito"
+                    onclick="eliminarDelCarrito(${item.id})">
+                    ❌ Eliminar de mi carrito
+                </button>
+            </div>
+        `;
+        total += subtotal;
     });
+    listaCarrito.innerHTML = html;
+    totalElemento.innerHTML = "Total $" + total;
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+};
+function eliminarDelCarrito(id){
+    const posicion = carrito.findIndex(p => p.id === id);
+    if(posicion !== -1){
+        carrito.splice(posicion, 1);
+        actualizar();
+    }
+};
 
-	
-	//Función para ir a la sección
-	function navigateTo(event, sectionId) {
-		event.preventDefault();
-		const section = document.getElementById(sectionId);
-		if	(section) {
-			window.scrollTo({
-				top: section.offsetTop - 100, // Ajusta el espacio superior
-				behavior: "smooth"
-			});
-		};
-	};
-	
-	//Bloque para el carrusel
-	var swiper = new Swiper(".mySwiper", {
-        loop: true,
-        pagination: { el: ".swiper-pagination", clickable: true },
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-        autoplay: { delay: 5000 }
-    });
 
-	//Bloque para las búsquedas
-	let highlightedElements = [];
-	let currentIndex = -1;
+const botonCarrito=document.getElementById("botonCarrito");
+const panelCarrito=document.getElementById("carrito");
+botonCarrito.onclick=function(){
+	panelCarrito.classList.toggle("abierto");
+};
 
-	function highlightText() {
-		texto_a_buscar = texto_busqueda.value.trim().toLowerCase();
-		highlightedElements = [];
-		currentIndex = -1;
+buscar.onkeyup=function(){
+	const t=this.value.toLowerCase();
+	mostrar(productos.filter(p=>p.nombre.toLowerCase().includes(t)));
+};
 
-	// Restaurar contenido original eliminando los resaltados anteriores
-		document.querySelectorAll('.highlight').forEach(span => {
-		const parent = span.parentNode;
-		parent.replaceChild(document.createTextNode(span.textContent), span);
-		parent.normalize();
-	});
-
-	if (texto_a_buscar === '') {
-		cantidadCoincidencias.style.display = 'none';
-		proxCoincidencia.style.display = 'none';
-		prevCoincidencia.style.display = 'none';
-		updateMatchCounter();
+filtro.onchange=function(){
+	if(this.value=="todos"){
+		mostrar(productos);
 		return;
 	}
+	mostrar(productos.filter(p=>p.categoria==this.value));
+};
 
-	// Buscar coincidencias solo en elementos con la clase "busca"
-	const elements = document.querySelectorAll('.busca');
-	elements.forEach(element => {
-		element.childNodes.forEach(node => {
-			if (node.nodeType !== 3) return;
-			const texto = node.textContent;
-			const regex = new RegExp("(" + texto_a_buscar.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
-			if (!regex.test(texto))
-				return;
-			regex.lastIndex = 0;
-			const fragment = document.createDocumentFragment();
-			let ultimoIndice = 0;
-			texto.replace(regex, (match, p1, offset) => {
-				fragment.appendChild(
-					document.createTextNode(texto.substring(ultimoIndice, offset))
-				);
-				const span = document.createElement("span");
-				span.className = "highlight";
-				span.textContent = match;
-				highlightedElements.push(span);
-				fragment.appendChild(span);
-				ultimoIndice = offset + match.length;
-			});
-			fragment.appendChild(
-				document.createTextNode(texto.substring(ultimoIndice))
-			);
-			node.parentNode.replaceChild(fragment, node);
-		});
-	});
-	updateMatchCounter();
-	if (highlightedElements.length > 0) {
-		currentIndex = 0;
-		updateActiveHighlight();
-		}
-	};
-
-	function updateMatchCounter() {
-		cantidadCoincidencias.textContent = `${highlightedElements.length > 0 ? currentIndex + 1 : 0}/${highlightedElements.length}`;
-	};
-
-	function updateActiveHighlight() {
-		highlightedElements.forEach(el => el.classList.remove('active-highlight'));
-		if (highlightedElements.length > 0 && currentIndex >= 0) {
-		const activeElement = highlightedElements[currentIndex];
-		activeElement.classList.add('active-highlight');
-		activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-		}
-		updateMatchCounter();
-	};
-
-	function navigate(direction) {
-		if (highlightedElements.length === 0) return;
-		if (direction === 'next') {
-			prevCoincidencia.style.display='block';
-			currentIndex = (currentIndex + 1) % highlightedElements.length;
-			} else {
-			currentIndex = (currentIndex - 1 + highlightedElements.length) % highlightedElements.length;
-			};
-		updateActiveHighlight();
-	};
-
-	// Eventos
-	texto_busqueda.addEventListener('input', highlightText);
-	proxCoincidencia.addEventListener('click', () => navigate('next'));
-	prevCoincidencia.addEventListener('click', () => navigate('prev'));
-	
-	//Descargar archivo
-	function descargarArchivo() {
-		const enlace = document.createElement("a");
-		enlace.href = "CV_Claudio_Mauricio_Godoy.pdf";
-		enlace.download = "cv-Mauricio_Godoy.pdf"; // Nombre sugerido
-		document.body.appendChild(enlace);
-		enlace.click();
-		document.body.removeChild(enlace);
-	};
-	
-	//Función Enviar Mail
-	function enviarMail() {
-		window.location.href = "mailto:cmauriciogodoy@gmail.com?subject=HOLA...!!!&body=Te contacto para comentarte que.... .-";
+/*==========================
+LIGHTBOX
+==========================*/
+document.querySelectorAll(".galeria img").forEach(img=>{
+	img.onclick=function(){
+		lightbox.style.display="flex";
+		imagenGrande.src=this.src;
 	}
-	
-	//Iniciar la función para animar las entradas en escenas de las imágenes de las secciones
-	AOS.init({duration: 1000});
-	
-	//Ir al tope superior cada vez que se ingrese
-	window.onload = function() {
-        window.scrollTo(0, 0);
-    };
+});
+
+cerrar.onclick=function(){
+	lightbox.style.display="none";
+};
+
+/*==========================
+CONTADORES
+==========================*/
+function contar(id,final){
+	let n=0;
+	const intervalo=setInterval(()=>{
+		n++;
+		document.getElementById(id).innerHTML=n;
+		if(n>=final){
+			clearInterval(intervalo);
+		}
+	},20);
+};
+
+const observer = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+        contar("c1",237);
+        contar("c2",1847);
+        contar("c3",139);
+        observer.disconnect();
+    }
+});
+observer.observe(document.querySelector(".estadisticas"));
+
+/*==========================
+MODO OSCURO
+==========================*/
+if(localStorage.tema=="oscuro"){
+	document.body.classList.add("oscuro");
+};
+
+modoOscuro.onclick=function(){
+	document.body.classList.toggle("oscuro");
+	localStorage.tema=document.body.classList.contains("oscuro")?"oscuro":"claro";
+};
+
+/*==========================
+VOLVER ARRIBA
+==========================*/
+window.onscroll=function(){
+	if(scrollY>500)
+		subir.classList.add("visible");
+	else
+		subir.classList.remove("visible");
+};
+
+function favorito(nombre,boton){
+	if(favoritos.includes(nombre)){
+		favoritos=favoritos.filter(
+			f=>f!=nombre
+		);
+		boton.classList.remove("activo");}
+	else{
+		favoritos.push(nombre);
+		boton.classList.add("activo");
+	}
+	localStorage.setItem("favoritos",JSON.stringify(favoritos));
+};
+
+/*==========================
+CARRITO PERSISTENTE
+==========================*/
+const guardado=localStorage.getItem("carrito");
+if(guardado){
+	const datos=JSON.parse(guardado);
+	datos.forEach(p=>carrito.push(p));
+	actualizar();
+};
+const menuMovil = document.getElementById("menuMovil");
+const menuPrincipal = document.getElementById("menuPrincipal");
+menuMovil.addEventListener("click", function() {
+    menuPrincipal.classList.toggle("mostrar");
+});
+//localStorage.clear();
 </script>
 </body>
 </html>
